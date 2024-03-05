@@ -8,85 +8,89 @@ public class Main {
     static int allQty = 0;
     static int allPrice = 0;
 
+    // Throws InterruptedException supaya dapat menggunakan function TimeUnit.SECONDS.sleep
     public static void main(String[] args) throws InterruptedException {
-        int jmlh;
-        Food mknn;
-        ArrayList<Food> cart = new ArrayList<>();
+        int jumlah;
+        Food makanan;
 
-        menu_list();
+        // Menggunakan arraylist supaya tidak perlu memikirkan jumlah pesanan
+        ArrayList<Food> foodCart = new ArrayList<>();
+
+        menuList();
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Masukkan pilihan anda: ");
         int choice = sc.nextInt();
         System.out.println("\n");
 
+        // Switch case untuk memilih menu/makanan
         while (choice != 0) {
             switch (choice) {
                 case 1:
                     System.out.println("1. Lontong Kari\t\t | 18000");
                     System.out.print("Jumlah yang ingin dibeli: ");
-                    jmlh = sc.nextInt();
-                    if (jmlh <= 0) {
+                    jumlah = sc.nextInt();
+                    if (jumlah <= 0) {
                         break;
                     } else {
-                        mknn = new Food("Lontong Kari", 18000, jmlh, 18000 * jmlh);
-                        System.out.printf("%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d", mknn.getName(), jmlh, mknn.getPrice(), mknn.getTotalPrice());
+                        makanan = new Food("Lontong Kari", 18000, jumlah, 18000 * jumlah);
+                        System.out.printf("%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d", makanan.getName(), jumlah, makanan.getPrice(), makanan.getTotalPrice());
                         TimeUnit.SECONDS.sleep(1);
-                        cart.add(mknn);
+                        foodCart.add(makanan);
                     }
                     break;
                 case 2:
                     System.out.println("2. Bakso\t\t\t | 12000");
                     System.out.print("Jumlah yang ingin dibeli: ");
-                    jmlh = sc.nextInt();
-                    if (jmlh <= 0) {
+                    jumlah = sc.nextInt();
+                    if (jumlah <= 0) {
                         break;
                     } else {
-                        mknn = new Food("Bakso", 12000, jmlh, 12000 * jmlh);
-                        System.out.printf("%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d", mknn.getName(), jmlh, mknn.getPrice(), mknn.getTotalPrice());
+                        makanan = new Food("Bakso", 12000, jumlah, 12000 * jumlah);
+                        System.out.printf("%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d", makanan.getName(), jumlah, makanan.getPrice(), makanan.getTotalPrice());
                         TimeUnit.SECONDS.sleep(1);
-                        cart.add(mknn);
+                        foodCart.add(makanan);
                     }
                     break;
                 case 3:
                     System.out.println("3. Nasi Goreng\t\t | 15000");
                     System.out.print("Jumlah yang ingin dibeli: ");
-                    jmlh = sc.nextInt();
-                    if (jmlh <= 0) {
+                    jumlah = sc.nextInt();
+                    if (jumlah <= 0) {
                         break;
                     } else {
-                        mknn = new Food("Nasi Goreng", 15000, jmlh, 15000 * jmlh);
-                        System.out.printf("%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d", mknn.getName(), jmlh, mknn.getPrice(), mknn.getTotalPrice());
+                        makanan = new Food("Nasi Goreng", 15000, jumlah, 15000 * jumlah);
+                        System.out.printf("%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d", makanan.getName(), jumlah, makanan.getPrice(), makanan.getTotalPrice());
                         TimeUnit.SECONDS.sleep(1);
-                        cart.add(mknn);
+                        foodCart.add(makanan);
                     }
                     break;
                 case 4:
                     System.out.println("4. Indomie\t\t\t | 8000");
                     System.out.print("Jumlah yang ingin dibeli: ");
-                    jmlh = sc.nextInt();
-                    if (jmlh <= 0) {
+                    jumlah = sc.nextInt();
+                    if (jumlah <= 0) {
                         break;
                     } else {
-                        mknn = new Food("Indomie", 8000, jmlh, 8000 * jmlh);
-                        System.out.printf("%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d", mknn.getName(), jmlh, mknn.getPrice(), mknn.getTotalPrice());
+                        makanan = new Food("Indomie", 8000, jumlah, 8000 * jumlah);
+                        System.out.printf("%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d", makanan.getName(), jumlah, makanan.getPrice(), makanan.getTotalPrice());
                         TimeUnit.SECONDS.sleep(1);
-                        cart.add(mknn);
+                        foodCart.add(makanan);
                     }
                     break;
                 case 99:
-                    if (cart.isEmpty()) {
+                    if (foodCart.isEmpty()) {
                         System.out.println("Tidak ada makanan yang ditambahkan!");
                         TimeUnit.SECONDS.sleep(1);
                     } else {
-                        checkout(cart);
+                        checkout(foodCart);
                     }
                     break;
                 default:
                     System.out.println("Pilihan yang anda masukkan salah!");
                     break;
             }
-            menu_list();
+            menuList();
             System.out.print("Masukkan pilihan anda: ");
             choice = sc.nextInt();
             System.out.println("\n");
@@ -97,7 +101,8 @@ public class Main {
         System.out.println("Program selesai!");
     }
 
-    static void menu_list() {
+    // Method
+    static void menuList() {
         System.out.println("\n\n================================================");
         System.out.println("Selamat datang di BinarFud cabang Firman Panji Utama");
         System.out.println("================================================\n");
@@ -110,6 +115,7 @@ public class Main {
         System.out.println("0. Exit");
     }
 
+    // Fitur Checkout atau Membayar Makanan
     static void checkout(ArrayList<Food> cart) {
         Scanner sc = new Scanner(System.in);
         int checkoutChoice;
@@ -134,13 +140,14 @@ public class Main {
 
         switch (checkoutChoice) {
             case 1:
-                // Buat file txt untuk receipt
+                // Membuat receipt dengan format txt
                 writeToFile(cart);
                 break;
             case 2:
                 break;
             case 0:
                 System.out.println("Akan keluar aplikasi!");
+                // Stop program
                 System.exit(0);
                 break;
             default:
