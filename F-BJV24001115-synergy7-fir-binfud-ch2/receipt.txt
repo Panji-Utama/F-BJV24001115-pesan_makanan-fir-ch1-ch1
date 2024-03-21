@@ -1,0 +1,15 @@
+================================================
+PanjiFud
+================================================
+
+Terima kasih sudah memesan. Berikut adalah pesanan anda:
+Lontong Kari    1          18000     
+Bakso           2          12000     
+-------------------------------- +
+Total           3          42000     
+
+Pembayaran : Gadai STNK Motor
+
+================================================================
+Simpan struk ini sebagai bukti gadai sah
+================================================================

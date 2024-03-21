@@ -1,0 +1,55 @@
+
+“
+java:S1130"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(º™Ú78ôåïÿå1
+H
+java:S1481"+Remove this unused "jumlah" local variable.(—Ø­8öåïÿå1
+]	java:S125"<This block of commented-out lines of code should be removed.(¶¬‹üÿÿÿÿ8öåïÿå1
+L	java:S106"+Replace this use of System.out by a logger.(ûïÖ¢ÿÿÿÿÿ8ûåïÿå1
+L	java:S106"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8ûåïÿå1
+]	java:S125."<This block of commented-out lines of code should be removed.(ÁùêÄûÿÿÿÿ8ıåïÿå1
+G	java:S1063"+Replace this use of System.out by a logger.(©ß•¥8ıåïÿå1
+L	java:S1067"+Replace this use of System.out by a logger.(™¨Šüÿÿÿÿ8ıåïÿå1
+L	java:S106:"+Replace this use of System.out by a logger.(ÊôÍíşÿÿÿÿ8ıåïÿå1
+L	java:S106>"+Replace this use of System.out by a logger.(ûïÖ¢ÿÿÿÿÿ8şåïÿå1
+L	java:S106@"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8şåïÿå1
+F	java:S106E"+Replace this use of System.out by a logger.(õñ8şåïÿå1
+L	java:S106J"+Replace this use of System.out by a logger.(¢³Ï³úÿÿÿÿ8ÿåïÿå1
+L	java:S106K"+Replace this use of System.out by a logger.(îÀùÿÿÿÿÿ8ÿåïÿå1
+G	java:S106L"+Replace this use of System.out by a logger.(Áü˜¾8ÿåïÿå1
+G	java:S106M"+Replace this use of System.out by a logger.(¡¯ºÅ8€æïÿå1
+G	java:S106N"+Replace this use of System.out by a logger.(Ëî³8€æïÿå1
+G	java:S106O"+Replace this use of System.out by a logger.(²Ÿˆå8€æïÿå1
+L	java:S106P"+Replace this use of System.out by a logger.(‡œÓ¬ûÿÿÿÿ8€æïÿå1
+L	java:S106Q"+Replace this use of System.out by a logger.(Îûœ³øÿÿÿÿ8€æïÿå1
+G	java:S106R"+Replace this use of System.out by a logger.(ÍÀ×²8€æïÿå1
+L	java:S106S"+Replace this use of System.out by a logger.(ïÚâÀşÿÿÿÿ8æïÿå1
+G	java:S106X"+Replace this use of System.out by a logger.(‹ñõ’8‚æïÿå1
+L	java:S106Y"+Replace this use of System.out by a logger.(âµºçÿÿÿÿÿ8‚æïÿå1
+G	java:S106Z"+Replace this use of System.out by a logger.(…¶Áç8‚æïÿå1
+s
+java:S3457b"Q%n should be used in place of \n to produce the platform-specific line separator.(æÆ¹»úÿÿÿÿ8„æïÿå1
+L	java:S106b"+Replace this use of System.out by a logger.(æÆ¹»úÿÿÿÿ8„æïÿå1
+G	java:S106d"+Replace this use of System.out by a logger.(ÈÈåÉ8„æïÿå1
+n
+java:S3457e"Q%n should be used in place of \n to produce the platform-specific line separator.(øÑ¦Ö8…æïÿå1
+G	java:S106e"+Replace this use of System.out by a logger.(øÑ¦Ö8…æïÿå1
+G	java:S106g"+Replace this use of System.out by a logger.(¡Ë˜ˆ8…æïÿå1
+G	java:S106h"+Replace this use of System.out by a logger.(’…ëÒ8…æïÿå1
+L	java:S106i"+Replace this use of System.out by a logger.(Ø²»Èúÿÿÿÿ8…æïÿå1
+G	java:S106j"+Replace this use of System.out by a logger.(ò›´í8†æïÿå1
+G	java:S106p"+Replace this use of System.out by a logger.(ÄÍ¦“8†æïÿå1
+L	java:S106v"+Replace this use of System.out by a logger.(ÎöÌşÿÿÿÿ8‡æïÿå1
+F	java:S106z"+Replace this use of System.out by a logger.(ŒõÖ8‡æïÿå1
+H	java:S106"+Replace this use of System.out by a logger.(ìá“Ì8ˆæïÿå1
+o
+java:S3457†"Q%n should be used in place of \n to produce the platform-specific line separator.(¢×æ8‰æïÿå1
+H	java:S106†"+Replace this use of System.out by a logger.(¢×æ8‰æïÿå1
+M	java:S106ˆ"+Replace this use of System.out by a logger.(íĞÁ§ûÿÿÿÿ8‰æïÿå1
+Q
+java:S1128"/Remove this unused import 'java.io.FileWriter'.(Ã‘ÅÃıÿÿÿÿ8Šæïÿå1
+R
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8Šæïÿå1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Šæïÿå1
+W
+java:S1128":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™ş8Šæïÿå1
