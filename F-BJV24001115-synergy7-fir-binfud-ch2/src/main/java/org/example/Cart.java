@@ -1,9 +1,10 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cart {
-    private ArrayList<Food> items;
+    private final ArrayList<Food> items;
     private int totalQuantity;
     private int totalPrice;
 
@@ -25,7 +26,7 @@ public class Cart {
         return totalPrice;
     }
 
-    public ArrayList<Food> getItems() {
+    public List<Food> getItems() {
         return items;
     }
 }
