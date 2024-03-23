@@ -1,10 +1,10 @@
 package org.example;
 
 public class Food {
-    private String name;
-    private int price;
-    private int qty;
-    private int totalPrice;
+    private final String name;
+    private final int price;
+    private final int qty;
+    private final int totalPrice;
 
     public Food(String name, int price, int qty) {
         this.name = name;

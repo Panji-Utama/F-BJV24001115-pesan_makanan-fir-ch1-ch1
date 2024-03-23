@@ -1,68 +1,55 @@
 package org.example;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
-    static int allQty = 0;
-    static int allPrice = 0;
-
-    // Throws InterruptedException supaya dapat menggunakan function TimeUnit.SECONDS.sleep
-    public static void main(String[] args) throws InterruptedException {
-        int jumlah;
-//        Food makanan;
+    public static void main(String[] args) {
 
         Cart cart = new Cart();
-
-        // Menggunakan arraylist supaya tidak perlu memikirkan jumlah pesanan
-
         menuList();
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Masukkan pilihan anda: ");
-        int choice = sc.nextInt();
-        System.out.println("\n");
-
-        // Switch case untuk memilih menu/makanan
-        while (choice != 0) {
-            switch (choice) {
-                case 1:
-                    addFoodToCart(cart, "Lontong Kari", 18000, sc);
-                    break;
-                case 2:
-                    addFoodToCart(cart, "Bakso", 12000, sc);
-                    break;
-                case 3:
-                    addFoodToCart(cart, "Nasi Goreng", 15000, sc);
-                    break;
-                case 4:
-                    addFoodToCart(cart, "Indomie", 8000, sc);
-                    break;
-                case 99:
-                    if (cart.getTotalQuantity() > 0) {
-//                        Receipt.generateReceipt(cart);
-//                        System.out.println("Receipt has been generated. Exiting program.");
-//                        choice = 0; // Exit the loop
-                        checkout(cart, sc);
-                    } else {
-                        System.out.println("Your cart is empty.");
-                    }
-                    break;
-                case 0:
-                    System.out.println("Exiting program.");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-            menuList();
-            System.out.print("Masukkan pilihan anda: ");
-            choice = sc.nextInt();
+        try {
+            int choice = sc.nextInt();
             System.out.println("\n");
+
+            // Switch case untuk memilih menu/makanan
+            while (choice != 0) {
+                switch (choice) {
+                    case 1:
+                        addFoodToCart(cart, "Lontong Kari", 18000, sc);
+                        break;
+                    case 2:
+                        addFoodToCart(cart, "Bakso", 12000, sc);
+                        break;
+                    case 3:
+                        addFoodToCart(cart, "Nasi Goreng", 15000, sc);
+                        break;
+                    case 4:
+                        addFoodToCart(cart, "Indomie", 8000, sc);
+                        break;
+                    case 99:
+                        if (cart.getTotalQuantity() > 0) {
+                            checkout(cart, sc);
+                        } else {
+                            System.out.println("Your cart is empty.");
+                        }
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                        break;
+                }
+                menuList();
+                System.out.print("Masukkan pilihan anda: ");
+                choice = sc.nextInt();
+                System.out.println("\n");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Anda harus memasukkan angka sebagai pilihan");
         }
+
 
         sc.close();
 
@@ -84,7 +71,7 @@ public class Main {
     }
 
     // Fitur Checkout atau Membayar Makanan
-    static void checkout(Cart cart, Scanner sc) { // Scanner passed as parameter
+    static void checkout(Cart cart, Scanner sc) {
         System.out.println("================================");
         System.out.println("Konfirmasi & Pembayaran");
         System.out.println("================================\n");
@@ -92,13 +79,13 @@ public class Main {
         int allQty = 0;
         int allPrice = 0;
 
-        for (Food f : cart.getItems()) { // Correctly iterate over the items in the cart
+        for (Food f : cart.getItems()) {
             allQty += f.getQty();
             allPrice += f.getTotalPrice();
-            System.out.printf("%-15s %-10d %-10d\n", f.getName(), f.getQty(), f.getTotalPrice());
+            System.out.printf("%-15s %-10d %-10d%n", f.getName(), f.getQty(), f.getTotalPrice());
         }
         System.out.println("-------------------------------- +");
-        System.out.printf("%-15s %-10d %-10d\n", "Total", allQty, allPrice);
+        System.out.printf("%-15s %-10d %-10d%n", "Total", allQty, allPrice);
 
         System.out.println("1. Konfirmasi dan bayar");
         System.out.println("2. Kembali ke menu utama");
@@ -108,11 +95,10 @@ public class Main {
 
         switch (checkoutChoice) {
             case 1:
-                Receipt.generateReceipt(cart); // Assuming this method is adjusted to work correctly
+                Receipt.generateReceipt(cart);
                 System.out.println("Receipt has been generated. Thank you for your purchase!");
                 break;
             case 2:
-                // Implementation for returning to the main menu (likely just breaking out of this method)
                 break;
             case 0:
                 System.out.println("Exiting application.");
@@ -131,7 +117,7 @@ public class Main {
         if (qty > 0) {
             Food item = new Food(name, price, qty);
             cart.addItem(item);
-            System.out.printf("%d of %s added to cart.\n", qty, name);
+            System.out.printf("%d of %s added to cart.%n", qty, name);
         } else {
             System.out.println("Invalid quantity.");
         }
