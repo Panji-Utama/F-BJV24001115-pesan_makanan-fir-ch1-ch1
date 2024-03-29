@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="75cad73c-50b0-4b87-8e32-f22395a94607" name="Changes" comment="Telah melakukan refactor smelly code">
+      <change afterPath="$PROJECT_DIR$/.idea/SYNRGY7_BEJ_FirmanPanjiUtama.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/b/4bc8ad5c8e308511ec84656e945dd9a3989777d0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/0/a03bb59c1f99d18fbdc35f5301eb6c6fe35bfd41" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/a/baca8acd897bb78537deb63a37faa48ca0f6185a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/9/c96e905096619e4018a5882971f21da0fdf8edbf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/a/ca9aaacb828b04764293e1833bfccc4b969d118d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/a/caac3163bce0dcafd3c8a2bd3dbd30808658b6bf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/e/ce769207a0cf2a760a547153c3b87275b350f16d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/2/22b9022f3da939dea61e0d23354cf9cc601bd315" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/0/408cd132293978768513a32213c4226cce043746" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/b/4bc8ad5c8e308511ec84656e945dd9a3989777d0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/7/e/7ef1e83960d08583e2acc5f46e5dd9905a334a17" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/0/a03bb59c1f99d18fbdc35f5301eb6c6fe35bfd41" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/a/baca8acd897bb78537deb63a37faa48ca0f6185a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/9/c96e905096619e4018a5882971f21da0fdf8edbf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/a/ca9aaacb828b04764293e1833bfccc4b969d118d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/a/caac3163bce0dcafd3c8a2bd3dbd30808658b6bf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/e/ce769207a0cf2a760a547153c3b87275b350f16d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/sonarlint/issuestore/0/b/0ba1b9c7a4878802f938e331cc2d8a042087ec6b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/sonarlint/securityhotspotstore/0/b/0ba1b9c7a4878802f938e331cc2d8a042087ec6b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chapter2_MVC/src/main/java/org/example/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/2/e/2e0f94feb63de69a8ddc891fa94b291745872f72" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/4/3/43980a4e319baaaac8f04754f423b45265a81eda" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/4/b/4b8735aa8370c4a76f09e7c156b8681cb660cf0d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/5/4/5452894fa10e55dd89aae6f9d8d5dff88ac76c74" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/5/d/5d03d5c3eb0b95395619065b523ee0441c7efe2b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/9/0/906711d34ffeb11adb0264944520a0b6695caa6e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/e/0/e0df8f92b08ccdefa1bca438b28a9e8b5832ef32" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/2/e/2e0f94feb63de69a8ddc891fa94b291745872f72" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/4/3/43980a4e319baaaac8f04754f423b45265a81eda" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/4/b/4b8735aa8370c4a76f09e7c156b8681cb660cf0d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/5/4/5452894fa10e55dd89aae6f9d8d5dff88ac76c74" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/5/d/5d03d5c3eb0b95395619065b523ee0441c7efe2b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/9/0/906711d34ffeb11adb0264944520a0b6695caa6e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/e/0/e0df8f92b08ccdefa1bca438b28a9e8b5832ef32" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/receipt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9faf20d3b00bed8af33cb7242412d12e3d200c39" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9faf20d3b00bed8af33cb7242412d12e3d200c39" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/0/b/0ba1b9c7a4878802f938e331cc2d8a042087ec6b" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/0/b/0ba1b9c7a4878802f938e331cc2d8a042087ec6b" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/1/9/190b40a772bf2e08319a2cd0d0058178b178ade0" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/2/22b9022f3da939dea61e0d23354cf9cc601bd315" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/d/6/d6f701a621c20d68d2f6fa0393c1f253c465090d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/d/9/d9fdbba85f506722c923cc4a301f685188096b3b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/1/9/190b40a772bf2e08319a2cd0d0058178b178ade0" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/0/408cd132293978768513a32213c4226cce043746" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/d/6/d6f701a621c20d68d2f6fa0393c1f253c465090d" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/e/7ef1e83960d08583e2acc5f46e5dd9905a334a17" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/d/9/d9fdbba85f506722c923cc4a301f685188096b3b" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/receipt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/receipt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/model/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/model/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/model/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/service/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/service/CartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/view/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/F-BJV24001115-synergy7-fir-binfud-ch2/src/main/java/org/example/view/MenuView.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Panji-Utama&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="0a046f40-969e-4b9b-a33a-db24eb7c680f" />
+        <option name="url" value="https://github.com/Panji-Utama/SYNRGY7_BEJ_FirmanPanjiUtama.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2dzPe8vGKbmehPKu1zZ4ui0jP2s" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "Merging Challenge2-New",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Panji/Documents/Backend Java SYNRGY Academy/SYNRGY7_BEJ_FirmanPanjiUtama",
+    "settings.editor.selected.configurable": "sonarlint"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="F-BJV24001115-synergy7-fir-binfud-ch2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="75cad73c-50b0-4b87-8e32-f22395a94607" name="Changes" comment="" />
+      <created>1711008028312</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711008028312</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Telah melakukan refactor smelly code">
+      <option name="closed" value="true" />
+      <created>1711223809514</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1711223809514</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Telah melakukan refactor smelly code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Telah melakukan refactor smelly code" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.InputMismatchException" package="java.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

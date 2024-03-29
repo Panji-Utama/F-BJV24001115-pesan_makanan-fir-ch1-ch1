@@ -1,5 +1,16 @@
 package org.example.model;
 
+<<<<<<< HEAD
+public class Food extends Items {
+
+    public Food(String name, int price, int qty) {
+        super(name, price, qty);
+    }
+
+    @Override
+    public String getDescription() {
+        return "Food: " + super.getDescription();
+=======
 public class Food {
     private final String name;
     private final int price;
@@ -25,5 +36,6 @@ public class Food {
 
     public int getTotalPrice() {
         return price * qty;
+>>>>>>> main
     }
 }
