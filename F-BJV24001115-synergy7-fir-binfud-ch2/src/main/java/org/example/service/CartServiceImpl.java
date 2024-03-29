@@ -49,9 +49,16 @@ public class CartServiceImpl implements CartService {
             int totalQty = 0;
             int totalPrice = 0;
             for (Items item : cart.getItemsCart()) {
+<<<<<<< HEAD
                 fileWriter.write(String.format("%-15s %-10d %-10d%n", item.getName(), item.getQty(), item.getPrice()));
                 totalQty += item.getQty();
                 totalPrice += item.getTotalPrice();
+=======
+                // Adjusted to match the old format: name, quantity, and price per item, not total price.
+                fileWriter.write(String.format("%-15s %-10d %-10d%n", item.getName(), item.getQty(), item.getPrice()));
+                totalQty += item.getQty();
+                totalPrice += item.getTotalPrice(); // Ensure this calculates the total price correctly.
+>>>>>>> main
             }
 
             fileWriter.write("-------------------------------- +\n");
@@ -65,10 +72,43 @@ public class CartServiceImpl implements CartService {
             ================================================================
             """);
             System.out.println("Struk pembelian sudah tercetak, dan anda akan dikeluarkan dari program ini...");
+<<<<<<< HEAD
+=======
+            // Removed the sleep and exit code for clarity and to focus on the receipt formatting.
+>>>>>>> main
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+<<<<<<< HEAD
+=======
+
+//        try (FileWriter fileWriter = new FileWriter("receipt.txt")) {
+//            fileWriter.write("""
+//                    ================================================
+//                    PanjiFud
+//                    ================================================
+//
+//                    Terima kasih sudah memesan. Berikut adalah pesanan anda:
+//                    """);
+//
+//            int totalQty = 0;
+//            int totalPrice = 0;
+//            for (Items item : cart.getItemsCart()) {
+//                int itemTotalPrice = item.getTotalPrice();
+//                fileWriter.write(item.getName() + "\t" + item.getQty() + " x " + item.getPrice() + " = " + itemTotalPrice + "\n");
+//                totalQty += item.getQty();
+//                totalPrice += itemTotalPrice;
+//            }
+//
+//            fileWriter.write("--------------------------------\n");
+//            fileWriter.write("Total Quantity: " + totalQty + "\n");
+//            fileWriter.write("Total Price: " + totalPrice + "\n");
+//            System.out.println("Receipt has been generated.");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+>>>>>>> main
     }
 
     @Override
@@ -82,9 +122,16 @@ public class CartServiceImpl implements CartService {
         for (Items item : cart.getItemsCart()) {
             allQty += item.getQty();
             allPrice += item.getTotalPrice();
+<<<<<<< HEAD
             System.out.printf("%-15s %-10d %-10d%n", item.getName(), item.getQty(), item.getTotalPrice());
         }
         System.out.println("-------------------------------- +");
         System.out.printf("%-15s %-10d %-10d%n", "Total", allQty, allPrice);
+=======
+            System.out.printf("%-15s %-10d %-10d\n", item.getName(), item.getQty(), item.getTotalPrice());
+        }
+        System.out.println("-------------------------------- +");
+        System.out.printf("%-15s %-10d %-10d\n", "Total", allQty, allPrice);
+>>>>>>> main
     }
 }
