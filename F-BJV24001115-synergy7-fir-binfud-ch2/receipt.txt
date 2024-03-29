@@ -1,0 +1,10 @@
+================================================
+PanjiFud
+================================================
+
+Terima kasih sudah memesan. Berikut adalah pesanan anda:
+Lontong Kari    2          36000     
+Nasi Goreng     4          60000     
+-------------------------------- +
+Total           6          96000     
+

@@ -1,0 +1,61 @@
+
+‡	java:S112¼"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚ÒéüÿÿÿÿJ$1b069c4d-0aa7-48b6-bc27-7932c43ab8c1
+•
+java:S1192‚"SDefine a constant instead of duplicating this literal "%-15s %-10d %-10d
+" 3 times.(æÆ¹»úÿÿÿÿJ$911bbdbe-9797-4ae7-bb57-485180500f6d
+œ
+java:S1192"[Define a constant instead of duplicating this literal "Jumlah yang ingin dibeli: " 4 times.(µ¶¦›ÿÿÿÿÿJ$0af7ddf0-af1c-486c-9d1f-233ce0438225
+â
+java:S1192%" Define a constant instead of duplicating this literal "%s ditambahkan ke dalam keranjang sebanyak %d buah dengan satu porsi seharga %d dengan total %d" 4 times.(å¯â›úÿÿÿÿJ$9de9e772-b882-4a5f-bb83-e4d54bcb151f
+V
+java:S1220""Move this file to a named package.J$af83d6c6-e33d-4970-ac06-d8353b3f2086
+
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(º™Ú7J$20e125c3-28fd-4ab2-aab5-dcd41a569f29
+k	java:S106"+Replace this use of System.out by a logger.(ûïÖ¢ÿÿÿÿÿJ$663b7536-ba83-4d2f-b5b2-78868e6d340e
+k	java:S106"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿJ$5943a049-d5d7-4dbb-964e-94d710221a38
+f	java:S106"+Replace this use of System.out by a logger.(Ëî³J$c5b65da5-f5c2-42a3-87d9-5901f8ae5583
+k	java:S106"+Replace this use of System.out by a logger.(µ¶¦›ÿÿÿÿÿJ$016d0971-93a4-41b8-b93e-8ccd2651c703
+k	java:S106%"+Replace this use of System.out by a logger.(å¯â›úÿÿÿÿJ$cf2c61a2-d4e3-4271-a9d5-e041c775e6b3
+f	java:S106+"+Replace this use of System.out by a logger.(²ŸˆåJ$81598534-7996-4526-8002-f66a39604fe9
+k	java:S106,"+Replace this use of System.out by a logger.(µ¶¦›ÿÿÿÿÿJ$f8619248-b798-4914-91ce-2f9c3921ded8
+k	java:S1062"+Replace this use of System.out by a logger.(å¯â›úÿÿÿÿJ$2314243b-a4f9-42a4-a787-0ddcdae88621
+k	java:S1068"+Replace this use of System.out by a logger.(‡œÓ¬ûÿÿÿÿJ$71bb13c6-31b7-4a8f-8f64-bf3ea53f38c5
+k	java:S1069"+Replace this use of System.out by a logger.(µ¶¦›ÿÿÿÿÿJ$8082156a-d146-40a4-afbd-3ebb7b5fce53
+k	java:S106?"+Replace this use of System.out by a logger.(å¯â›úÿÿÿÿJ$ac6d426c-b871-41cc-9cca-4c3bc78a3ad4
+k	java:S106E"+Replace this use of System.out by a logger.(Îûœ³øÿÿÿÿJ$345b7250-8756-4d5a-9662-4812fbdc6c1f
+k	java:S106F"+Replace this use of System.out by a logger.(µ¶¦›ÿÿÿÿÿJ$d6230e44-7322-4d62-aa22-24936498cb96
+k	java:S106L"+Replace this use of System.out by a logger.(å¯â›úÿÿÿÿJ$6881dd34-2c31-42d0-bd35-798502367584
+e	java:S106S"+Replace this use of System.out by a logger.(ÒÆªEJ$acb8b655-1bdc-4977-a752-2242621081ba
+e	java:S106Z"+Replace this use of System.out by a logger.(ˆÔÁzJ$9e2e278f-ec31-4ca2-9f10-43f64b2ae260
+k	java:S106^"+Replace this use of System.out by a logger.(ûïÖ¢ÿÿÿÿÿJ$03d8446b-a423-45bd-ae33-db2100fc88f3
+k	java:S106`"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿJ$331de6da-affe-4f94-a4a4-96385d17f648
+e	java:S106e"+Replace this use of System.out by a logger.(õñJ$5c9af086-ad3f-45ae-a091-b284e0b664e7
+k	java:S106j"+Replace this use of System.out by a logger.(¢³Ï³úÿÿÿÿJ$7d8b200d-4ef2-476c-b89e-197f26c8bfd1
+k	java:S106k"+Replace this use of System.out by a logger.(îÀùÿÿÿÿÿJ$4b02b701-7d75-45a4-a49e-b980b004b66a
+f	java:S106l"+Replace this use of System.out by a logger.(Áü˜¾J$350f4c28-67c6-4520-9cd5-e3ed7136b53e
+f	java:S106m"+Replace this use of System.out by a logger.(¡¯ºÅJ$31f54f05-d5b6-45b8-9d4e-3c2199a4a77b
+f	java:S106n"+Replace this use of System.out by a logger.(Ëî³J$517d3b6e-f8d2-424b-8832-1b9d3545bc52
+f	java:S106o"+Replace this use of System.out by a logger.(²ŸˆåJ$1a4fb9fb-5359-46ee-80bb-0245a6c42def
+k	java:S106p"+Replace this use of System.out by a logger.(‡œÓ¬ûÿÿÿÿJ$ea6d1862-175c-488d-bb07-f375fe1ec074
+k	java:S106q"+Replace this use of System.out by a logger.(Îûœ³øÿÿÿÿJ$cfcd5621-b955-4093-8a9a-dd56a4cd6636
+f	java:S106r"+Replace this use of System.out by a logger.(ÍÀ×²J$ee615b51-cbe9-4361-bbb3-471ac14416d0
+k	java:S106s"+Replace this use of System.out by a logger.(ïÚâÀşÿÿÿÿJ$1830edfc-8a90-4454-affe-c80379b70257
+f	java:S106{"+Replace this use of System.out by a logger.(‹ñõ’J$3ac521ea-b192-4f04-97eb-6de5b723cb2e
+k	java:S106|"+Replace this use of System.out by a logger.(âµºçÿÿÿÿÿJ$cb5913ad-a0f0-4006-9f5b-9f5721aafcf4
+f	java:S106}"+Replace this use of System.out by a logger.(…¶ÁçJ$8382c4bc-cb92-4a35-a23d-ab5f62ed2e28
+l	java:S106‚"+Replace this use of System.out by a logger.(æÆ¹»úÿÿÿÿJ$6a330240-fd00-487a-b240-c0fb1fc71dfe
+g	java:S106„"+Replace this use of System.out by a logger.(ÈÈåÉJ$87fbf975-4d4f-4acf-b113-6948a2bd112b
+
+java:S3457…"Q%n should be used in place of \n to produce the platform-specific line separator.(øÑ¦ÖJ$6098ed87-fb2b-4ed9-b263-c8881c53e31b
+g	java:S106…"+Replace this use of System.out by a logger.(øÑ¦ÖJ$05a5af26-1c0a-4519-a571-93c984ae3981
+g	java:S106‡"+Replace this use of System.out by a logger.(¡Ë˜ˆJ$a5ae6ec9-a780-4239-8ed0-3ad9ae291f3d
+g	java:S106ˆ"+Replace this use of System.out by a logger.(’…ëÒJ$cf3bd71d-532b-49a6-ae9f-8600abff01e2
+l	java:S106‰"+Replace this use of System.out by a logger.(Ø²»ÈúÿÿÿÿJ$e0a693a1-7e63-4f06-826d-15422da46646
+g	java:S106Š"+Replace this use of System.out by a logger.(ò›´íJ$f25479df-89d3-4031-87cc-48d1821df1ce
+g	java:S106•"+Replace this use of System.out by a logger.(Æ­Ø‰J$e4305e06-8075-4b16-a289-ac70bdd64918
+f	java:S106š"+Replace this use of System.out by a logger.(ˆÔÁzJ$9b17925e-74fc-450f-b731-1e9518a7ccb6
+›
+java:S2142»"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€J$5a903c2e-30f9-42bd-9713-11d2e02c8f1a
+
+java:S3457­"Q%n should be used in place of \n to produce the platform-specific line separator.(®µÙÓJ$291dd060-59ba-4d7e-88d7-d6b7e2526bcb
+g	java:S106¶"+Replace this use of System.out by a logger.(×º·êJ$9c563575-6e7f-44e7-b805-2303718cc652
