@@ -1,0 +1,5 @@
+
+r	java:S106"+Replace this use of System.out by a logger.(ûïÖ¢ÿÿÿÿÿ8íèËç1J$0ccd03fd-d967-4858-833f-0535a918483b
+r	java:S1069"+Replace this use of System.out by a logger.(ûïÖ¢ÿÿÿÿÿ8óèËç1J$d0950023-e5ac-4b49-9572-6e0176908676
+v
+java:S1128"3Remove this unused import 'org.example.model.Cart'.(ÂŞïà8œÓ×€è1J$777c8a59-0374-4131-86b3-f7c6e75dcc6b
