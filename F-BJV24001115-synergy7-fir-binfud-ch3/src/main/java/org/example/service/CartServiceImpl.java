@@ -4,13 +4,19 @@ import org.example.model.Cart;
 import org.example.model.Items;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class CartServiceImpl implements CartService {
     private final Cart cart = new Cart();
+    private Path receiptFilePath = Paths.get("receipt.txt");
 
     @Override
     public void addFoodToCart(Items item) {
+        if (item == null) {
+            return;
+        }
         cart.addItem(item);
     }
 
@@ -37,7 +43,7 @@ public class CartServiceImpl implements CartService {
             return;
         }
 
-        try (FileWriter fileWriter = new FileWriter("receipt.txt")) {
+        try (FileWriter fileWriter = new FileWriter(receiptFilePath.toFile())) {
             fileWriter.write("""
             ================================================
             PanjiFud
@@ -68,40 +74,31 @@ public class CartServiceImpl implements CartService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-//    @Override
-//    public void displayCartContents() {
-//        System.out.println("================================");
-//        System.out.println("Konfirmasi & Pembayaran");
-//        System.out.println("================================\n");
-//
-//        int allQty = 0;
-//        int allPrice = 0;
-//        for (Items item : cart.getItemsCart()) {
-//            allQty += item.getQty();
-//            allPrice += item.getTotalPrice();
-//            System.out.printf("%-15s %-10d %-10d%n", item.getName(), item.getQty(), item.getTotalPrice());
-//        }
-//        System.out.println("-------------------------------- +");
-//        System.out.printf("%-15s %-10d %-10d%n", "Total", allQty, allPrice);
-//    }
+    public void setReceiptFilePath(Path path) {
+        this.receiptFilePath = path;
+    }
 
     @Override
     public void displayCartContents() {
+        if (isCartEmpty()) {
+            System.out.println("Cart is empty.");
+            return;
+        }
         System.out.println("================================");
         System.out.println("Konfirmasi & Pembayaran");
         System.out.println("================================\n");
 
-        cart.getItemsCart().stream().forEach(item ->
-                System.out.printf("%-15s %-10d %-10d%n", item.getName(), item.getQty(), item.getTotalPrice()));
-
-        int allQty = cart.getItemsCart().stream().mapToInt(Items::getQty).sum();
-        int allPrice = cart.getItemsCart().stream().mapToInt(Items::getTotalPrice).sum();
+        int allQty = 0;
+        int allPrice = 0;
+        for (Items item : cart.getItemsCart()) {
+            System.out.printf("%-15s %-10d %-10d%n", item.getName(), item.getQty(), item.getTotalPrice());
+            allQty += item.getQty();
+            allPrice += item.getTotalPrice();
+        }
 
         System.out.println("-------------------------------- +");
         System.out.printf("%-15s %-10d %-10d%n", "Total", allQty, allPrice);
     }
-
 }
