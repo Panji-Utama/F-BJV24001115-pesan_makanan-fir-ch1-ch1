@@ -28,58 +28,6 @@ public class MenuView {
         System.out.println("0. Exit");
     }
 
-//    public static Food getFoodDetails(int choice, Scanner scanner) {
-//        String name = "";
-//        int price = 0;
-//        switch (choice) {
-//            case 1:
-//                name = "Lontong Kari";
-//                price = 18000;
-//                break;
-//            case 2:
-//                name = "Bakso";
-//                price = 12000;
-//                break;
-//            case 3:
-//                name = "Nasi Goreng";
-//                price = 15000;
-//                break;
-//            case 4:
-//                name = "Indomie";
-//                price = 8000;
-//                break;
-//            default:
-//                System.out.println("Invalid choice. Please try again.");
-//                return null;
-//        }
-//        System.out.print("Jumlah yang ingin dibeli: ");
-//        int qty = MyInputMismatch.getInputChoice(scanner);
-//        if (qty <= 0) {
-//            System.out.println("Jumlah harus lebih dari 0.");
-//            return null;
-//        }
-//        return new Food(name, price, qty);
-//    }
-
-//    public static Drink getDrinkDetails(int choice, Scanner scanner) {
-//        String name;
-//        int price;
-//        if (choice == 5) {
-//            name = "Es Teh";
-//            price = 5000;
-//        } else {
-//            System.out.println("Invalid choice. Please try again.");
-//            return null;
-//        }
-//        System.out.print("Jumlah yang ingin dibeli: ");
-//        int qty = MyInputMismatch.getInputChoice(scanner);
-//        if (qty <= 0) {
-//            System.out.println("Jumlah harus lebih dari 0.");
-//            return null;
-//        }
-//        return new Drink(name, price, qty);
-//    }
-
     public static Optional<Food> getFoodDetails(int choice, Scanner scanner) {
         String name = "";
         int price = 0;

@@ -25,14 +25,14 @@ class CartServiceImplTest {
     @BeforeEach
     void setUp() {
         cartService = new CartServiceImpl();
-        originalOut = System.out; // store the original System.out
+        originalOut = System.out;
         outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent)); // set the new System.out
+        System.setOut(new PrintStream(outContent));
     }
 
     @AfterEach
     void restoreStreams() {
-        System.setOut(originalOut); // restore System.out to its original
+        System.setOut(originalOut);
     }
 
     @Test
