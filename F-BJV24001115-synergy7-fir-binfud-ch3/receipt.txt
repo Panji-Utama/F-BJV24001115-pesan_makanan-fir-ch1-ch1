@@ -1,0 +1,18 @@
+================================================
+PanjiFud
+================================================
+
+Terima kasih sudah memesan. Berikut adalah pesanan anda:
+Lontong Kari    10         18000     
+Bakso           20         12000     
+Nasi Goreng     30         15000     
+Indomie         40         8000      
+Bakso           20         12000     
+-------------------------------- +
+Total           120        1430000   
+
+Pembayaran : Gadai STNK Motor
+
+================================================================
+Simpan struk ini sebagai bukti gadai sah
+================================================================
