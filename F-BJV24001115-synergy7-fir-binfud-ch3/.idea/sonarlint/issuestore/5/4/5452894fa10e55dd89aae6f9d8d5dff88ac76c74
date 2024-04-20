@@ -1,14 +1,18 @@
 
-r	java:S106"+Replace this use of System.out by a logger.(ûïÖ¢ÿÿÿÿÿ8Ğû°²ï1J$1ec31284-2610-4124-8d3b-0240b7037800
-l	java:S106"+Replace this use of System.out by a logger.(õñ8Ôû°²ï1J$ca7c2707-a588-400d-9c7e-4319b92df9a2
-r	java:S106,"+Replace this use of System.out by a logger.(»¨´ºøÿÿÿÿ8äû°²ï1J$ab00a87d-249e-4419-b0ae-54b1dc53a58e
-r	java:S1064"+Replace this use of System.out by a logger.(»¨´ºøÿÿÿÿ8éû°²ï1J$6235d5a1-b7e9-4ce4-bc90-b9e633ba9679
-l	java:S106B"+Replace this use of System.out by a logger.(ˆÔÁz8îû°²ï1J$7716f953-9073-4d3f-be22-17dfd3bcf88b
-r	java:S106J"+Replace this use of System.out by a logger.(¬…“¾ıÿÿÿÿ8ğû°²ï1J$f4761e4b-ed11-4478-925a-841e55cd814c
-r	java:S106R"+Replace this use of System.out by a logger.(÷ÿ¬°şÿÿÿÿ8óû°²ï1J$ebb0a4d7-0372-4b22-a7bd-8ebfc1333f9c
-m	java:S106X"+Replace this use of System.out by a logger.(¡Ë˜ˆ8õû°²ï1J$93918c46-81be-48f1-a4cc-226e2af5bd16
-m	java:S106Y"+Replace this use of System.out by a logger.(’…ëÒ8õû°²ï1J$4e2a049a-4f92-4ad2-bb3e-ea527ffd6fa3
-r	java:S106Z"+Replace this use of System.out by a logger.(Ø²»Èúÿÿÿÿ8÷û°²ï1J$da64fe42-d087-4cbe-b32c-ea35e5f18ea9
-m	java:S106["+Replace this use of System.out by a logger.(ò›´í8øû°²ï1J$53fa1a04-1a0b-46e8-b4dd-9aa4f16bb22f
-m	java:S106f"+Replace this use of System.out by a logger.(Æ­Ø‰8Ù‹¡Îï1J$1c0d9c60-e83e-4086-a010-cf2a1f318176
-l	java:S106j"+Replace this use of System.out by a logger.(ˆÔÁz8Ú‹¡Îï1J$964a9a0b-c5a2-4b36-84dc-571ebace5b99
+r	java:S106"+Replace this use of System.out by a logger.(ûïÖ¢ÿÿÿÿÿ8Ğû°²ï1J$e582a919-1f3f-4792-828e-5c83886df086
+l	java:S106"+Replace this use of System.out by a logger.(õñ8Ôû°²ï1J$a172974d-d584-414e-b655-1bba8a16c24a
+r	java:S106,"+Replace this use of System.out by a logger.(»¨´ºøÿÿÿÿ8äû°²ï1J$c78d1d56-5569-4f77-a9ae-d5a3b693cf8a
+r	java:S1064"+Replace this use of System.out by a logger.(»¨´ºøÿÿÿÿ8éû°²ï1J$ea6e3bf6-196a-4483-bf0a-cb2e1ac03f23
+l	java:S106B"+Replace this use of System.out by a logger.(ˆÔÁz8îû°²ï1J$6c4aaa93-2def-4d26-aace-1ff23b7ea8fb
+r	java:S106J"+Replace this use of System.out by a logger.(¬…“¾ıÿÿÿÿ8ğû°²ï1J$1d1d77b7-c6da-4554-ad51-bb6f6e38a494
+r	java:S106R"+Replace this use of System.out by a logger.(÷ÿ¬°şÿÿÿÿ8óû°²ï1J$9e67363a-96c9-46db-92a9-7a7682358b82
+m	java:S106X"+Replace this use of System.out by a logger.(¡Ë˜ˆ8õû°²ï1J$090b32bc-b1fc-4742-aac2-87dc2b940ee3
+m	java:S106Y"+Replace this use of System.out by a logger.(’…ëÒ8õû°²ï1J$557ad534-ee19-4e1b-a303-e10a9bffe5fe
+r	java:S106Z"+Replace this use of System.out by a logger.(Ø²»Èúÿÿÿÿ8÷û°²ï1J$c46bd9ee-25c8-4768-9d82-de60a3c61e9c
+m	java:S106["+Replace this use of System.out by a logger.(ò›´í8øû°²ï1J$538e091a-65d5-45a1-b15d-d249fdf597fd
+m	java:S106f"+Replace this use of System.out by a logger.(Æ­Ø‰8Ù‹¡Îï1J$c488aaed-ba2c-46f5-a875-b476c63e1fc6
+l	java:S106j"+Replace this use of System.out by a logger.(ˆÔÁz8Ú‹¡Îï1J$ab580282-d526-4a19-813c-982a0146060d
+Q
+java:S1128"4Remove this unused import 'org.example.model.Drink'.(ßÉşé8­ÍİÎï1
+U
+java:S1128"3Remove this unused import 'org.example.model.Food'.(¼¥á‚şÿÿÿÿ8­ÍİÎï1
