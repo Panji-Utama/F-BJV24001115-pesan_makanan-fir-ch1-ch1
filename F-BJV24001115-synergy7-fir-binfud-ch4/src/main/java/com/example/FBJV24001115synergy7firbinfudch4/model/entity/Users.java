@@ -3,6 +3,7 @@ package com.example.FBJV24001115synergy7firbinfudch4.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -12,12 +13,15 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-
-public class Users extends BaseModel{
+public class Users extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
     private String username;
-    private String email_address;
+    private String emailAddress;
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = Order.class)
+    private List<Order> orders;
 }
