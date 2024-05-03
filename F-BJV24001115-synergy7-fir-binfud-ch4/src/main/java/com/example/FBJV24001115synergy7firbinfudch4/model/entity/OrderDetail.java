@@ -20,9 +20,9 @@ public class OrderDetail extends BaseModel {
     private Integer quantity;
     private BigDecimal totalPrice;
 
-    @ManyToOne(targetEntity = Order.class)
+    @ManyToOne(targetEntity = Orders.class)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Orders order;
 
     @ManyToOne(targetEntity = Product.class)
     @JoinColumn(name = "product_id")

@@ -22,6 +22,6 @@ public class Users extends BaseModel {
     private String emailAddress;
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = Order.class)
-    private List<Order> orders;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = Orders.class)
+    private List<Orders> orders;
 }

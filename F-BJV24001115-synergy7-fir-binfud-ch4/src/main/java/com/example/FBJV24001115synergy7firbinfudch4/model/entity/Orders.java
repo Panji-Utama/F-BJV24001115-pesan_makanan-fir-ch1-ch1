@@ -12,8 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "order")
-public class Order extends BaseModel {
+@Table(name = "orders")
+public class Orders extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;

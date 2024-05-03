@@ -1,6 +1,6 @@
 package com.example.FBJV24001115synergy7firbinfudch4.service;
 
-import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Order;
+import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Orders;
 import com.example.FBJV24001115synergy7firbinfudch4.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public Order createOrder(Order order) {
+    public Orders createOrder(Orders order) {
         return orderRepository.save(order);
     }
 
     @Override
-    public Order updateOrder(Order order) {
+    public Orders updateOrder(Orders order) {
         return orderRepository.save(order);
     }
 
@@ -28,7 +28,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllOrders() {
+    public Orders getOrderById(UUID orderId) {
+        return orderRepository.findById(orderId).orElse(null);
+    }
+
+    @Override
+    public List<Orders> getAllOrders() {
         return orderRepository.findAll();
     }
 }

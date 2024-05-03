@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
@@ -29,7 +29,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> getAvailableProducts() {
+    public Product getProductById(UUID productId) {
+        return productRepository.findById(productId).orElse(null);
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 }
