@@ -52,13 +52,15 @@ public class UserController {
     }
 
     private void registerUser(Scanner scanner) {
-        String[] userDetails = userView.getRegistrationDetails(scanner);
-        Users newUser = userService.registerUser(userDetails[0], userDetails[1], userDetails[2]);
-        if (newUser != null) {
-            userView.displayRegistrationSuccess();
-        } else {
-            userView.displayRegistrationFailed();
-        }
+        System.out.print("Enter username: ");
+        String username = scanner.next();
+        System.out.print("Enter email: ");
+        String email = scanner.next();
+        System.out.print("Enter password: ");
+        String password = scanner.next();
+
+        userService.registerUser(username, email, password);
+        System.out.println("User registered successfully.");
     }
 
     private boolean loginUser(Scanner scanner) {
@@ -125,21 +127,17 @@ public class UserController {
     }
 
     private void updateUser(Scanner scanner) {
-        System.out.print("Enter user ID to update: ");
-        UUID userId = UUID.fromString(scanner.next());
+        System.out.print("Enter the ID of the selected user to update: ");
+        UUID id = UUID.fromString(scanner.next());
         System.out.print("Enter new username: ");
         String username = scanner.next();
         System.out.print("Enter new email: ");
         String email = scanner.next();
-        Users user = userService.findByUsername(username); // Assuming you can fetch like this
-        if (user != null) {
-            user.setUsername(username);
-            user.setEmailAddress(email);
-            userService.updateUser(user);
-            System.out.println("User updated successfully.");
-        } else {
-            System.out.println("User not found.");
-        }
+        System.out.print("Enter new password: ");
+        String password = scanner.next();
+
+        userService.updateUser(id, username, email, password);
+        System.out.println("User registered successfully.");
     }
 
     private void deleteUser(Scanner scanner) {
