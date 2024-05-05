@@ -23,6 +23,7 @@ public class MerchantController {
         while (keepRunning) {
             merchantView.displayMerchantMenu();
             int choice = scanner.nextInt();
+            scanner.nextLine();
             switch (choice) {
                 case 1:
                     addMerchant(scanner);
@@ -33,6 +34,9 @@ public class MerchantController {
                 case 3:
                     showOpenMerchants();
                     break;
+                case 4:
+                    showProductsByMerchant(scanner);
+                    break;
                 case 0:
                     keepRunning = false;
                     break;
@@ -41,6 +45,18 @@ public class MerchantController {
             }
         }
     }
+
+    private void showProductsByMerchant(Scanner scanner) {
+        System.out.print("Enter merchant name to show products: ");
+        String merchantName = scanner.nextLine();
+        List<String> products = merchantService.getProductsByMerchantName(merchantName);
+        if (products.isEmpty()) {
+            System.out.println("No products found for this merchant.");
+        } else {
+            products.forEach(System.out::println);
+        }
+    }
+
 
     private void addMerchant(Scanner scanner) {
         scanner.nextLine(); // Consume newline

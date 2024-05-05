@@ -17,12 +17,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public Users registerUser(String username, String password, String email) {
-        Users user = new Users();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmailAddress(email);
-        return userRepository.save(user);
+    public void registerUser(String username, String password, String email) {
+        userRepository.registerUser(username, password, email);
     }
 
     @Override
@@ -37,13 +33,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users updateUser(Users user) {
-        return userRepository.save(user);
+    public void updateUser(UUID id, String new_username, String new_email, String new_password) {
+        userRepository.updateUser(id, new_username, new_email, new_password);
     }
 
     @Override
     public void deleteUser(UUID userId) {
-        userRepository.deleteById(userId);
+        userRepository.deleteUser(userId);
     }
 
     @Override

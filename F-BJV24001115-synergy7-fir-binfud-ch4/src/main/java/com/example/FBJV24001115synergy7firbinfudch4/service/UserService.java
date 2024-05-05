@@ -17,10 +17,10 @@ import java.util.UUID;
 //}
 
 public interface UserService {
-    Users registerUser(String username, String password, String email);
+    void registerUser(String username, String password, String email);
     Users findByUsername(String username);
     Users getUserById(UUID userId);
-    Users updateUser(Users user);
+    void updateUser(UUID id, String new_username, String new_email, String new_password);
     void deleteUser(UUID userId);
     Page<Users> findAllUsersByName(String name, Pageable pageable);
 }
