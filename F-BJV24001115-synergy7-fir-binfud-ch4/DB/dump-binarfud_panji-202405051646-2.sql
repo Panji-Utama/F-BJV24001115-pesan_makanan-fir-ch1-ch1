@@ -5,7 +5,7 @@
 -- Dumped from database version 15.2
 -- Dumped by pg_dump version 15.2
 
--- Started on 2024-05-03 23:59:00
+-- Started on 2024-05-05 16:46:17
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,7 +20,7 @@ SET row_security = off;
 
 DROP DATABASE binarfud_panji;
 --
--- TOC entry 3366 (class 1262 OID 16401)
+-- TOC entry 3368 (class 1262 OID 16401)
 -- Name: binarfud_panji; Type: DATABASE; Schema: -; Owner: -
 --
 
@@ -49,7 +49,7 @@ CREATE SCHEMA public;
 
 
 --
--- TOC entry 3367 (class 0 OID 0)
+-- TOC entry 3369 (class 0 OID 0)
 -- Dependencies: 5
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
 --
@@ -58,17 +58,45 @@ COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 --
--- TOC entry 220 (class 1255 OID 16497)
--- Name: register_user(character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
+-- TOC entry 230 (class 1255 OID 16499)
+-- Name: procedure_create_user(character varying, character varying, character varying); Type: PROCEDURE; Schema: public; Owner: -
 --
 
-CREATE FUNCTION public.register_user(username character varying, email character varying, password character varying) RETURNS void
-    LANGUAGE plpgsql
+CREATE PROCEDURE public.procedure_create_user(IN username character varying, IN email character varying, IN pw character varying)
+    LANGUAGE sql
+    AS $$ 
+insert into public.users (id, username, email_address, password, created_date, updated_date)
+values (uuid_generate_v4(), username, email, pw, NOW(), NOW())
+$$;
+
+
+--
+-- TOC entry 232 (class 1255 OID 16505)
+-- Name: procedure_delete_user(uuid); Type: PROCEDURE; Schema: public; Owner: -
+--
+
+CREATE PROCEDURE public.procedure_delete_user(IN d_id uuid)
+    LANGUAGE sql
     AS $$
-BEGIN
-    INSERT INTO users (id, username, email_address, password, created_date, updated_date)
-    VALUES (uuid_generate_v4(), username, email, password, NOW(), NOW());
-END;
+DELETE FROM users
+WHERE id = d_id;
+$$;
+
+
+--
+-- TOC entry 231 (class 1255 OID 16503)
+-- Name: procedure_update_user(uuid, character varying, character varying, character varying); Type: PROCEDURE; Schema: public; Owner: -
+--
+
+CREATE PROCEDURE public.procedure_update_user(IN new_id uuid, IN new_username character varying, IN new_email character varying, IN new_password character varying)
+    LANGUAGE sql
+    AS $$ 
+update users
+set 
+username = new_username, 
+email_address = new_email, 
+password = new_password
+where id = new_id
 $$;
 
 
@@ -159,7 +187,7 @@ CREATE TABLE public.users (
 
 
 --
--- TOC entry 3356 (class 0 OID 16434)
+-- TOC entry 3358 (class 0 OID 16434)
 -- Dependencies: 215
 -- Data for Name: merchant; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -169,7 +197,7 @@ INSERT INTO public.merchant VALUES ('59becb29-7809-46f7-8b3e-6e73582e8962', '202
 
 
 --
--- TOC entry 3357 (class 0 OID 16441)
+-- TOC entry 3359 (class 0 OID 16441)
 -- Dependencies: 216
 -- Data for Name: order_detail; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -177,7 +205,7 @@ INSERT INTO public.merchant VALUES ('59becb29-7809-46f7-8b3e-6e73582e8962', '202
 
 
 --
--- TOC entry 3360 (class 0 OID 16468)
+-- TOC entry 3362 (class 0 OID 16468)
 -- Dependencies: 219
 -- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -185,7 +213,7 @@ INSERT INTO public.merchant VALUES ('59becb29-7809-46f7-8b3e-6e73582e8962', '202
 
 
 --
--- TOC entry 3358 (class 0 OID 16446)
+-- TOC entry 3360 (class 0 OID 16446)
 -- Dependencies: 217
 -- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -194,22 +222,16 @@ INSERT INTO public.product VALUES ('2d0380f7-cb5d-402b-8ccf-f4c1cec96806', '2024
 
 
 --
--- TOC entry 3359 (class 0 OID 16451)
+-- TOC entry 3361 (class 0 OID 16451)
 -- Dependencies: 218
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.users VALUES ('1634c3b1-1dae-4417-876c-affea0e35be8', '2024-05-03 19:26:52.716', NULL, '2024-05-03 19:26:52.716', 'panji@gmail.com', 'panji123', 'panji');
-INSERT INTO public.users VALUES ('921933b0-e58c-40a3-8af4-3299b393512b', '2024-05-03 19:49:43.993', NULL, '2024-05-03 19:49:43.993', 'test@gmail.com', 'test123', 'test');
-INSERT INTO public.users VALUES ('bec5789f-53bb-4223-bee6-cfc3b9ae5bbc', '2024-05-03 20:25:10.584397', NULL, '2024-05-03 20:25:10.584397', 'newuser@example.com', 'password123', 'newuser');
-INSERT INTO public.users VALUES ('cb5af216-3693-44ba-86cb-482dd57a383c', '2024-05-03 20:26:20.856242', NULL, '2024-05-03 20:26:20.856242', 'newuser1@example.com', 'password123', 'newuser1');
-INSERT INTO public.users VALUES ('9e65437e-c456-43ef-b620-08f81623b70c', '2024-05-03 20:26:23.935426', NULL, '2024-05-03 20:26:23.935426', 'newuser1@example.com', 'password123', 'newuser1');
-INSERT INTO public.users VALUES ('8a6f3bfc-3a52-4ae5-9749-b4f45c9379a9', '2024-05-03 20:26:25.499846', NULL, '2024-05-03 20:26:25.499846', 'newuser1@example.com', 'password123', 'newuser1');
-INSERT INTO public.users VALUES ('c2d15bc7-bbca-4d98-8194-a9ad3d9912d0', '2024-05-03 23:37:30.644', NULL, '2024-05-03 23:37:30.644', 'pertama@gmail.com', 'pertama123', 'pertama');
+INSERT INTO public.users VALUES ('b0bd83a5-5115-48ed-9fe8-f14ce7983b9a', '2024-05-05 16:41:37.649768', NULL, '2024-05-05 16:41:37.649768', 'test44@gmail.com', 'pwtest44', 'Test44');
 
 
 --
--- TOC entry 3201 (class 2606 OID 16440)
+-- TOC entry 3203 (class 2606 OID 16440)
 -- Name: merchant merchant_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -218,7 +240,7 @@ ALTER TABLE ONLY public.merchant
 
 
 --
--- TOC entry 3203 (class 2606 OID 16445)
+-- TOC entry 3205 (class 2606 OID 16445)
 -- Name: order_detail order_detail_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -227,7 +249,7 @@ ALTER TABLE ONLY public.order_detail
 
 
 --
--- TOC entry 3209 (class 2606 OID 16472)
+-- TOC entry 3211 (class 2606 OID 16472)
 -- Name: orders orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -236,7 +258,7 @@ ALTER TABLE ONLY public.orders
 
 
 --
--- TOC entry 3205 (class 2606 OID 16450)
+-- TOC entry 3207 (class 2606 OID 16450)
 -- Name: product product_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -245,7 +267,7 @@ ALTER TABLE ONLY public.product
 
 
 --
--- TOC entry 3207 (class 2606 OID 16457)
+-- TOC entry 3209 (class 2606 OID 16457)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -254,7 +276,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3213 (class 2606 OID 16478)
+-- TOC entry 3215 (class 2606 OID 16478)
 -- Name: orders fk32ql8ubntj5uh44ph9659tiih; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -263,7 +285,7 @@ ALTER TABLE ONLY public.orders
 
 
 --
--- TOC entry 3210 (class 2606 OID 16458)
+-- TOC entry 3212 (class 2606 OID 16458)
 -- Name: order_detail fkb8bg2bkty0oksa3wiq5mp5qnc; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -272,7 +294,7 @@ ALTER TABLE ONLY public.order_detail
 
 
 --
--- TOC entry 3212 (class 2606 OID 16463)
+-- TOC entry 3214 (class 2606 OID 16463)
 -- Name: product fkk47qmalv2pg906heielteubu7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -281,7 +303,7 @@ ALTER TABLE ONLY public.product
 
 
 --
--- TOC entry 3211 (class 2606 OID 16473)
+-- TOC entry 3213 (class 2606 OID 16473)
 -- Name: order_detail fkrws2q0si6oyd6il8gqe2aennc; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -289,7 +311,7 @@ ALTER TABLE ONLY public.order_detail
     ADD CONSTRAINT fkrws2q0si6oyd6il8gqe2aennc FOREIGN KEY (order_id) REFERENCES public.orders(id);
 
 
--- Completed on 2024-05-03 23:59:00
+-- Completed on 2024-05-05 16:46:17
 
 --
 -- PostgreSQL database dump complete
