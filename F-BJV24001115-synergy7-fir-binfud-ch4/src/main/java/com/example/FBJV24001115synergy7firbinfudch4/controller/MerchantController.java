@@ -59,7 +59,6 @@ public class MerchantController {
 
 
     private void addMerchant(Scanner scanner) {
-        scanner.nextLine(); // Consume newline
         System.out.print("Enter merchant name: ");
         String name = scanner.nextLine();
         System.out.print("Enter merchant location: ");

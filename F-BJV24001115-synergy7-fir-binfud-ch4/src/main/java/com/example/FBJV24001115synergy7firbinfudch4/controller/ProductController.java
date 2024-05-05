@@ -37,6 +37,9 @@ public class ProductController {
                 case 3: // Delete Product
                     deleteProduct(scanner);
                     break;
+                case 4:
+                    showAvailableProducts();
+                    break;
                 case 0: // Return to Main Menu
                     keepRunning = false;
                     break;
@@ -44,6 +47,11 @@ public class ProductController {
                     System.out.println("Invalid choice. Please try again");
             }
         }
+    }
+
+    private void showAvailableProducts() {
+        Iterable<Product> products = productService.getAllProducts();
+        products.forEach((p -> System.out.println(p.getProductName())));
     }
 
     private void addProduct(Scanner scanner) {
@@ -82,7 +90,8 @@ public class ProductController {
 
     private void deleteProduct(Scanner scanner) {
         System.out.print("Enter product ID to delete: ");
-        UUID productId = UUID.fromString(scanner.nextLine());
+        UUID productId = UUID.fromString(scanner.next());
+        scanner.nextLine();
         productService.deleteProduct(productId);
         System.out.println("Product deleted successfully.");
     }
