@@ -1,9 +1,10 @@
 package com.example.FBJV24001115synergy7firbinfudch4.controller;
 
+import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Merchant;
 import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Product;
+import com.example.FBJV24001115synergy7firbinfudch4.repository.MerchantRepository;
 import com.example.FBJV24001115synergy7firbinfudch4.service.ProductService;
 import com.example.FBJV24001115synergy7firbinfudch4.view.ProductView;
-import com.example.FBJV24001115synergy7firbinfudch4.view.UserView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -17,6 +18,9 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private ProductView productView;
+
+    @Autowired
+    private MerchantRepository merchantRepository;
 
     public void manageProductServices(Scanner scanner) {
         boolean keepRunning = true;
@@ -45,17 +49,17 @@ public class ProductController {
     private void addProduct(Scanner scanner) {
         System.out.print("Enter product name: ");
         String name = scanner.next();
+        scanner.nextLine();
+
         System.out.print("Enter price: ");
         Double price = scanner.nextDouble();
-        Product product = new Product();
-        product.setProductName(name);
-        product.setPrice(price);
-        Product savedProduct = productService.addProduct(product);
-        if (savedProduct != null) {
-            System.out.println("Product added successfully.");
-        } else {
-            System.out.println("Failed to add product.");
-        }
+        scanner.nextLine();
+
+        System.out.print("Enter merchant ID:");
+        UUID merchantId = UUID.fromString(scanner.nextLine());
+
+        productService.addProduct(price, name, merchantId);
+        System.out.println("Product added successfully.");
     }
 
     private void updateProduct(Scanner scanner) {

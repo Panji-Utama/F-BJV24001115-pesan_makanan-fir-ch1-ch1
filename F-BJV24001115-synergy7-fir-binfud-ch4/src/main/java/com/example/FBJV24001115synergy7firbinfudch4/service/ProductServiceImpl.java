@@ -1,6 +1,8 @@
 package com.example.FBJV24001115synergy7firbinfudch4.service;
 
+import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Merchant;
 import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Product;
+import com.example.FBJV24001115synergy7firbinfudch4.repository.MerchantRepository;
 import com.example.FBJV24001115synergy7firbinfudch4.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,23 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private MerchantRepository merchantRepository;
+
+//    @Override
+//    public void addProduct(Double price, String productName, UUID merchantId) {
+//        return productRepository.save(product);
+//        productRepository.createProduct(price, productName, merchantId);
+//    }
+
     @Override
-    public Product addProduct(Product product) {
+    public Product addProduct(Double price, String productName, UUID merchantId) {
+        Merchant merchant = merchantRepository.findById(merchantId).orElseThrow(() -> new RuntimeException("Merchant not found"));
+        Product product = Product.builder()
+                .productName(productName)
+                .price(price)
+                .merchant(merchant)
+                .build();
         return productRepository.save(product);
     }
 

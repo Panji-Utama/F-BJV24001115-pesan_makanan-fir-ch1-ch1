@@ -1,7 +1,6 @@
 package com.example.FBJV24001115synergy7firbinfudch4.repository;
 
 import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Merchant;
-import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
