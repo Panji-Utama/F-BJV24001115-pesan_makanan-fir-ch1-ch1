@@ -17,7 +17,7 @@ public class UserView {
     }
 
     public String[] getRegistrationDetails(Scanner scanner) {
-        scanner.nextLine(); // Consume newline left-over
+        scanner.nextLine();
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         System.out.print("Enter password: ");
@@ -28,20 +28,12 @@ public class UserView {
     }
 
     public String[] getLoginDetails(Scanner scanner) {
-        scanner.nextLine(); // Consume newline left-over
+        scanner.nextLine();
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
         return new String[]{username, password};
-    }
-
-    public void displayRegistrationSuccess() {
-        System.out.println("Registration successful.");
-    }
-
-    public void displayRegistrationFailed() {
-        System.out.println("Registration failed.");
     }
 
     public void displayLoginSuccess() {
@@ -77,6 +69,8 @@ public class UserView {
         System.out.println("1. Create User");
         System.out.println("2. Update User");
         System.out.println("3. Delete User");
+        System.out.println("4. Search Username");
         System.out.println("0. Return to Main Menu");
+        System.out.println("\nYour choice: ");
     }
 }

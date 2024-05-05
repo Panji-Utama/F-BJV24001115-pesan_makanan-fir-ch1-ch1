@@ -10,6 +10,6 @@ import java.util.UUID;
 
 public interface MerchantRepository extends JpaRepository<Merchant, UUID> {
     List<Merchant> findByOpen(boolean isOpen);
-    @Query(value = "SELECT p.product_name, m.merchant_name FROM product p INNER JOIN merchant m ON p.merchant_id = m.id WHERE m.merchant_name = :merchantName", nativeQuery = true)
+    @Query(value = "SELECT p.product_name, p.price FROM product p INNER JOIN merchant m ON p.merchant_id = m.id WHERE m.merchant_name = :merchantName", nativeQuery = true)
     List<Object[]> findAllProductsByMerchantName(@Param("merchantName") String merchantName);
 }

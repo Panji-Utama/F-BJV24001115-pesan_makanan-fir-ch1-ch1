@@ -14,6 +14,7 @@ public class ProductView {
         System.out.println("3. Delete Product");
         System.out.println("4. Show Available Products");
         System.out.println("0. Return to Main Menu");
+        System.out.println("\nYour choice: ");
     }
 
     public int getProductChoice(Scanner scanner) {

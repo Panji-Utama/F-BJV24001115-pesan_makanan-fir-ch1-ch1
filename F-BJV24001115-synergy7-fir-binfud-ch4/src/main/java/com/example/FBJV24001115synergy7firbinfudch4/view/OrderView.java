@@ -13,6 +13,7 @@ public class OrderView {
         System.out.println("2. Update Order");
         System.out.println("3. Display Orders");
         System.out.println("0. Return to Main Menu");
+        System.out.println("\nYour choice: ");
     }
 
     public int getOrderChoice(Scanner scanner) {

@@ -48,7 +48,8 @@ public class OrderController {
 
     private void createOrder(Scanner scanner) {
         System.out.print("Enter user ID for the order: ");
-        UUID userId = UUID.fromString(scanner.nextLine());
+        UUID userId = UUID.fromString(scanner.next());
+        scanner.nextLine();
         Users user = userService.getUserById(userId);
         if (user != null) {
             Orders order = new Orders();

@@ -16,17 +16,14 @@ public class MerchantView {
         System.out.println("3. Show Open Merchants");
         System.out.println("4. Show Products of Merchant by Merchant Name");
         System.out.println("0. Return to Main Menu");
+        System.out.println("\nYour choice: ");
     }
 
-    public int getMerchantChoice(Scanner scanner) {
-        return scanner.nextInt();
-    }
-
-    public void displayProducts(List<Product> products) {
-        if (products.isEmpty()) {
-            System.out.println("No products found for this merchant.");
-        } else {
-            products.forEach(product -> System.out.println(product.getProductName() + " - " + product.getPrice()));
-        }
-    }
+//    public void displayProducts(List<Product> products) {
+//        if (products.isEmpty()) {
+//            System.out.println("No products found for this merchant.");
+//        } else {
+//            products.forEach(product -> System.out.println(product.getProductName() + " - " + product.getPrice()));
+//        }
+//    }
 }

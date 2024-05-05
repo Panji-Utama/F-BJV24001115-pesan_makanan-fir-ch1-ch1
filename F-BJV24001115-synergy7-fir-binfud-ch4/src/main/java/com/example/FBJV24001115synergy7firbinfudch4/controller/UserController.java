@@ -117,6 +117,9 @@ public class UserController {
                 case 3: // Delete User
                     deleteUser(scanner);
                     break;
+                case 4:
+                    displayAllUsersByName(scanner);
+                    break;
                 case 0: // Return to Main Menu
                     keepRunning = false;
                     break;
