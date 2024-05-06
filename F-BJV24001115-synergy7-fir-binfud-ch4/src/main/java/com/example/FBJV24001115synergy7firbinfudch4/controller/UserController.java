@@ -3,6 +3,8 @@ package com.example.FBJV24001115synergy7firbinfudch4.controller;
 import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Users;
 import com.example.FBJV24001115synergy7firbinfudch4.service.UserService;
 import com.example.FBJV24001115synergy7firbinfudch4.view.UserView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import java.util.UUID;
 
 @Controller
 public class UserController {
+    private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserView userView;
@@ -48,6 +51,8 @@ public class UserController {
                         userView.displayInvalidChoice();
                 }
             }
+        } catch (Exception e) {
+            LOG.error(e.getMessage());
         }
     }
 
@@ -59,8 +64,12 @@ public class UserController {
         System.out.print("Enter password: ");
         String password = scanner.next();
 
+        if(password.length() < 5){
+            LOG.warn("Password is weak");
+        }
+
         userService.registerUser(username, email, password);
-        System.out.println("User registered successfully.");
+        LOG.info("User registered successfully.");
     }
 
     private boolean loginUser(Scanner scanner) {
