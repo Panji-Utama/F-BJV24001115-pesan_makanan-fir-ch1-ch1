@@ -17,3 +17,5 @@ h
 receipt.txt,0\7\07ad8ec85ba7ed81ebea0bf77d192ab0f2b841e9
 Z
 *src/main/java/org/example/model/Drink.java,6\0\60884317aeebe15984e4bb047942b55012f2c58f
+Z
+*src/main/java/org/example/model/Items.java,8\e\8eb4e25ce6b7ba641136d43d6289b810990e8719
