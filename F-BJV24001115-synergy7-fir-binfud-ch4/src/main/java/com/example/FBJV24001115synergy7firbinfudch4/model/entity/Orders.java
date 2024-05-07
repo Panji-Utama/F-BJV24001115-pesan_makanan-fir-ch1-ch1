@@ -26,6 +26,6 @@ public class Orders extends BaseModel {
     @JoinColumn(name = "user_id")
     private Users user;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, targetEntity = OrderDetail.class)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = OrderDetail.class)
     private List<OrderDetail> orderDetails;
 }

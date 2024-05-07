@@ -1,13 +1,16 @@
 package com.example.FBJV24001115synergy7firbinfudch4.controller;
 
+import com.example.FBJV24001115synergy7firbinfudch4.model.entity.OrderDetail;
 import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Orders;
 import com.example.FBJV24001115synergy7firbinfudch4.model.entity.Users;
+import com.example.FBJV24001115synergy7firbinfudch4.repository.ProductRepository;
 import com.example.FBJV24001115synergy7firbinfudch4.service.OrderService;
 import com.example.FBJV24001115synergy7firbinfudch4.service.UserService;
 import com.example.FBJV24001115synergy7firbinfudch4.view.OrderView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -18,9 +21,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     @Autowired
-    private UserService userService;
-    @Autowired
     private OrderView orderView;
+    @Autowired
+    private ProductRepository productRepository;
 
     public void manageOrderServices(Scanner scanner) {
         boolean keepRunning = true;
@@ -31,10 +34,7 @@ public class OrderController {
                 case 1: // Create Order
                     createOrder(scanner);
                     break;
-                case 2: // Update Order
-                    updateOrder(scanner);
-                    break;
-                case 3: // Display Orders
+                case 2: // Display Orders
                     displayOrders();
                     break;
                 case 0: // Return to Main Menu
@@ -47,38 +47,48 @@ public class OrderController {
     }
 
     private void createOrder(Scanner scanner) {
+        System.out.print("Enter destination address: ");
+        String destinationAddress = scanner.next();
+        scanner.nextLine();
         System.out.print("Enter user ID for the order: ");
         UUID userId = UUID.fromString(scanner.next());
         scanner.nextLine();
-        Users user = userService.getUserById(userId);
-        if (user != null) {
-            Orders order = new Orders();
-            order.setUser(user);
-            Orders savedOrder = orderService.createOrder(order);
-            if (savedOrder != null) {
-                System.out.println("Order created successfully.");
-            } else {
-                System.out.println("Failed to create order.");
-            }
-        } else {
-            System.out.println("User not found.");
-        }
-    }
+        List<OrderDetail> details = new ArrayList<>();
 
-    private void updateOrder(Scanner scanner) {
-        System.out.print("Enter order ID to update: ");
-        UUID orderId = UUID.fromString(scanner.nextLine());
-        Orders order = orderService.getOrderById(orderId);
+        boolean addingProducts = true;
+        while (addingProducts) {
+            System.out.print("Enter product ID (or 'done' to finish): ");
+            String input = scanner.nextLine();
+            if ("done".equalsIgnoreCase(input)) {
+                addingProducts = false;
+            } else {
+                UUID productId = UUID.fromString(input);
+                System.out.print("Enter quantity for product: ");
+                Integer quantity = scanner.nextInt();
+                scanner.nextLine();
+                OrderDetail detail = new OrderDetail();
+                detail.setProduct(productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found")));
+                detail.setQuantity(quantity);
+                details.add(detail);
+            }
+        }
+
+        Orders order = orderService.createOrder(destinationAddress, userId, details);
         if (order != null) {
-            // Update logic here, assuming updates are done here
-            System.out.println("Order updated successfully.");
+            System.out.println("Order created successfully with ID: " + order.getId());
         } else {
-            System.out.println("Order not found.");
+            System.out.println("Failed to create order.");
         }
     }
 
     private void displayOrders() {
         List<Orders> orders = orderService.getAllOrders();
-        orders.forEach(order -> System.out.println(order.toString()));
+        orders.forEach(order -> {
+            System.out.println("Order ID: " + order.getId());
+            order.getOrderDetails().forEach(detail -> {
+                System.out.println("Product: " + detail.getProduct().getProductName() + ", Quantity: " + detail.getQuantity());
+            });
+            System.out.println("----------------------------------------------------");
+        });
     }
 }
