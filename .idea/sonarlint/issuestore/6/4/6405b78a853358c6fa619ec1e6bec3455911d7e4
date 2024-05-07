@@ -1,0 +1,12 @@
+
+v
+java:S11924"TDefine a constant instead of duplicating this literal "%-15s %-10d %-10d%n" 3 times.(®ÙÕ‚øÿÿÿÿ8¾¤Èíê1
+G	java:S106"+Replace this use of System.out by a logger.(Š­‹€8í¤Èíê1
+F	java:S106$"+Replace this use of System.out by a logger.(ÒÆªE8ò¤Èíê1
+G	java:S106C"+Replace this use of System.out by a logger.(×º·ê8¥Èíê1
+G	java:S106L"+Replace this use of System.out by a logger.(‹ñõ’8„¥Èíê1
+L	java:S106M"+Replace this use of System.out by a logger.(âµºçÿÿÿÿÿ8…¥Èíê1
+G	java:S106N"+Replace this use of System.out by a logger.(…¶Áç8†¥Èíê1
+L	java:S106U"+Replace this use of System.out by a logger.(Í›¼ùÿÿÿÿ8‡¥Èíê1
+G	java:S106W"+Replace this use of System.out by a logger.(ÈÈåÉ8‰¥Èíê1
+L	java:S106X"+Replace this use of System.out by a logger.(ÔØÂøÿÿÿÿ8‹¥Èíê1
