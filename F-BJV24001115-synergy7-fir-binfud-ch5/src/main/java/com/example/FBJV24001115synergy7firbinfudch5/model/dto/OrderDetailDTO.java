@@ -1,15 +1,12 @@
 package com.example.FBJV24001115synergy7firbinfudch5.model.dto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class OrderDetailDTO {
     private Integer quantity;
-    private BigDecimal totalPrice;
+    private Double totalPrice;
     private ProductDTO product;
 }

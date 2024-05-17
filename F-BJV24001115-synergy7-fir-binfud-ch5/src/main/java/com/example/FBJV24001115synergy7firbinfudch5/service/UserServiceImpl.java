@@ -1,15 +1,15 @@
 package com.example.FBJV24001115synergy7firbinfudch5.service;
 
+import com.example.FBJV24001115synergy7firbinfudch5.model.dto.UsersDTO;
 import com.example.FBJV24001115synergy7firbinfudch5.model.entity.Users;
 import com.example.FBJV24001115synergy7firbinfudch5.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,32 +17,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
-    public Users registerUser(Users user) {
-        return userRepository.save(user);
+    public UsersDTO createUser(Users user) {
+        Users savedUser = userRepository.save(user);
+        return modelMapper.map(savedUser, UsersDTO.class);
     }
 
     @Override
-    public Users updateUser(Users user) {
-        return userRepository.save(user);
+    public List<UsersDTO> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(user -> modelMapper.map(user, UsersDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void deleteUser(UUID userId) {
-        Users user = userRepository.findById(userId)
+    public UsersDTO getUserById(UUID id) {
+        Users user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-        user.setDeletedDate(new Date());
-        userRepository.save(user);
-    }
-
-    @Override
-    public Users getUserById(UUID userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    }
-
-    @Override
-    public List<Users> getAllUsers() {
-        return userRepository.findAll();
+        return modelMapper.map(user, UsersDTO.class);
     }
 }

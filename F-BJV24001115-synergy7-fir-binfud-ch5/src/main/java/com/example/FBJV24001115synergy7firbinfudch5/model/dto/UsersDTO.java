@@ -9,9 +9,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDTO {
-    private String destinationAddress;
-    private Boolean completed;
-    private UserDTO user;
-    private List<OrderDetailDTO> orderDetails;
+public class UsersDTO {
+    private String username;
+    private String emailAddress;
+    private String password;
+    private List<OrdersDTO> orders;
 }
