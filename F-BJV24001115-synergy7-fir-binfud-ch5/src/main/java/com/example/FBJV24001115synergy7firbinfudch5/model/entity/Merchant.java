@@ -1,7 +1,13 @@
 package com.example.FBJV24001115synergy7firbinfudch5.model.entity;
 
+import com.example.FBJV24001115synergy7firbinfudch5.model.entity.BaseModel;
+import com.example.FBJV24001115synergy7firbinfudch5.model.entity.Product;
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,15 +19,19 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "merchant")
-public class Merchant extends BaseModel{
+@SQLDelete(sql = "UPDATE merchant SET deleted = true WHERE id = ?")
+@SQLRestriction("deleted_date IS NULL")
+public class Merchant extends BaseModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String merchant_name;
-    private String merchant_location;
+    private String merchantName;
+    private String merchantLocation;
     private Boolean open;
 
     @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL, targetEntity = Product.class)
+    @JsonIgnore
     private List<Product> products;
 }

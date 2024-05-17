@@ -7,6 +7,7 @@ import com.example.FBJV24001115synergy7firbinfudch5.repository.ProductRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,19 +20,21 @@ public class ProductServiceImpl implements ProductService {
     private MerchantRepository merchantRepository;
 
 //    @Override
-//    public void addProduct(Double price, String productName, UUID merchantId) {
+//    public Product addProduct(Product product) {
 //        return productRepository.save(product);
-//        productRepository.createProduct(price, productName, merchantId);
 //    }
 
     @Override
-    public Product addProduct(Double price, String productName, UUID merchantId) {
-        Merchant merchant = merchantRepository.findById(merchantId).orElseThrow(() -> new RuntimeException("Merchant not found"));
-        Product product = Product.builder()
-                .productName(productName)
-                .price(price)
-                .merchant(merchant)
-                .build();
+    public Product addProduct(Product product) {
+        UUID merchantId = product.getMerchant().getId();
+        Merchant merchant = merchantRepository.findById(merchantId)
+                .orElseThrow(() -> new IllegalArgumentException("Merchant not found"));
+        product.setMerchant(merchant);
+
+        if (product.getPrice() == null) {
+            throw new IllegalArgumentException("Product price cannot be null");
+        }
+
         return productRepository.save(product);
     }
 
@@ -42,12 +45,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(UUID productId) {
-        productRepository.deleteById(productId);
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+        product.setDeletedDate(new Date());
+        productRepository.save(product);
     }
 
     @Override
     public Product getProductById(UUID productId) {
-        return productRepository.findById(productId).orElse(null);
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
     }
 
     @Override

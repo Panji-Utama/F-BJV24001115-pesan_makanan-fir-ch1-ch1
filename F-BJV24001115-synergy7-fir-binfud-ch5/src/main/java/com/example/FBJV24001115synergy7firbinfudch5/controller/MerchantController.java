@@ -3,88 +3,48 @@ package com.example.FBJV24001115synergy7firbinfudch5.controller;
 import com.example.FBJV24001115synergy7firbinfudch5.model.entity.Merchant;
 import com.example.FBJV24001115synergy7firbinfudch5.service.MerchantService;
 import com.example.FBJV24001115synergy7firbinfudch5.view.MerchantView;
+import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 
-@Controller
+@RestController
+@RequestMapping("/api/merchants")
 public class MerchantController {
 
     @Autowired
-    private MerchantView merchantView;
-    @Autowired
     private MerchantService merchantService;
 
-    public void manageMerchantServices(Scanner scanner) {
-        boolean keepRunning = true;
-        while (keepRunning) {
-            merchantView.displayMerchantMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-            switch (choice) {
-                case 1:
-                    addMerchant(scanner);
-                    break;
-                case 2:
-                    updateMerchantStatus(scanner);
-                    break;
-                case 3:
-                    showOpenMerchants();
-                    break;
-                case 4:
-                    showProductsByMerchant(scanner);
-                    break;
-                case 0:
-                    keepRunning = false;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again");
-            }
-        }
+    @PostMapping
+    public ResponseEntity<Merchant> addMerchant(@RequestBody Merchant merchant) {
+        return ResponseEntity.ok(merchantService.addMerchant(merchant));
     }
 
-    private void showProductsByMerchant(Scanner scanner) {
-        System.out.print("Enter merchant name to show products: ");
-        String merchantName = scanner.nextLine();
-        List<String> products = merchantService.getProductsByMerchantName(merchantName);
-        if (products.isEmpty()) {
-            System.out.println("No products found for this merchant.");
-        } else {
-            products.forEach(System.out::println);
-        }
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Merchant> updateMerchantStatus(@PathVariable UUID id, @RequestBody Map<String, Boolean> status) {
+        return ResponseEntity.ok(merchantService.updateMerchantStatus(id, status.get("open")));
     }
 
-
-    private void addMerchant(Scanner scanner) {
-        System.out.print("Enter merchant name: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter merchant location: ");
-        String location = scanner.nextLine();
-        Merchant newMerchant = Merchant.builder()
-                .merchant_name(name)
-                .merchant_location(location)
-                .open(true)
-                .build();
-        merchantService.addMerchant(newMerchant);
-        System.out.println("Merchant added successfully.");
+    @GetMapping("/{id}")
+    public ResponseEntity<Merchant> getMerchantById(@PathVariable UUID id) {
+        return ResponseEntity.ok(merchantService.getMerchantById(id));
     }
 
-    private void updateMerchantStatus(Scanner scanner) {
-        System.out.print("Enter merchant ID: ");
-        UUID id = UUID.fromString(scanner.next());
-        System.out.print("Is the merchant open? (true/false): ");
-        boolean isOpen = scanner.nextBoolean();
-        merchantService.updateMerchantStatus(id, isOpen);
-        System.out.println("Merchant status updated successfully.");
+    @GetMapping
+    public ResponseEntity<List<Merchant>> getOpenMerchants() {
+        return ResponseEntity.ok(merchantService.getOpenMerchants());
     }
 
-    private void showOpenMerchants() {
-        List<Merchant> merchants = merchantService.getOpenMerchants();
-        for (Merchant merchant : merchants) {
-            System.out.println("ID: " + merchant.getId() + ", Name: " + merchant.getMerchant_name() + ", Location: " + merchant.getMerchant_location());
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMerchant(@PathVariable UUID id) {
+        merchantService.deleteMerchant(id);
+        return ResponseEntity.noContent().build();
     }
 }
+

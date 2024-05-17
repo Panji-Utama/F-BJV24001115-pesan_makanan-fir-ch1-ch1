@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ProductService {
-    Product addProduct(Double price, String productName, UUID merchantId);
+    Product addProduct(Product product);
+
     Product updateProduct(Product product);
+
     void deleteProduct(UUID productId);
+
     Product getProductById(UUID productId);
+
     List<Product> getAllProducts();
 }

@@ -1,6 +1,9 @@
 package com.example.FBJV24001115synergy7firbinfudch5.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -12,7 +15,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "order_detail")
+@SQLDelete(sql = "UPDATE order_detail SET deleted_date = current_timestamp WHERE id = ?")
+@SQLRestriction("deleted_date IS NULL")
 public class OrderDetail extends BaseModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -22,6 +28,7 @@ public class OrderDetail extends BaseModel {
 
     @ManyToOne(targetEntity = Orders.class)
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     private Orders order;
 
     @ManyToOne(targetEntity = Product.class)

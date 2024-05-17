@@ -1,5 +1,6 @@
 package com.example.FBJV24001115synergy7firbinfudch5.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +24,6 @@ public class Users extends BaseModel {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = Orders.class)
+    @JsonIgnore
     private List<Orders> orders;
 }

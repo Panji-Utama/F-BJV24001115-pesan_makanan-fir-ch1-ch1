@@ -10,15 +10,16 @@ import org.springframework.data.repository.query.Param;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<Users, UUID> {
+
     Users findByUsername(String username);
-    Page<Users> findByUsernameContaining(String username, Pageable pageable);
-
-    @Procedure(procedureName  = "procedure_create_user")
-    void registerUser(@Param("c_username") String username, @Param("c_email") String email, @Param("c_pw")  String password);
-
-    @Procedure(procedureName = "procedure_update_user")
-    void updateUser(UUID new_id, String new_username, String new_email, String new_password);
-
-    @Procedure(procedureName = "procedure_delete_user")
-    void deleteUser(UUID user_id);
+//    Page<Users> findByUsernameContaining(String username, Pageable pageable);
+//
+//    @Procedure(procedureName  = "procedure_create_user")
+//    void registerUser(@Param("c_username") String username, @Param("c_email") String email, @Param("c_pw")  String password);
+//
+//    @Procedure(procedureName = "procedure_update_user")
+//    void updateUser(UUID new_id, String new_username, String new_email, String new_password);
+//
+//    @Procedure(procedureName = "procedure_delete_user")
+//    void deleteUser(UUID user_id);
 }
