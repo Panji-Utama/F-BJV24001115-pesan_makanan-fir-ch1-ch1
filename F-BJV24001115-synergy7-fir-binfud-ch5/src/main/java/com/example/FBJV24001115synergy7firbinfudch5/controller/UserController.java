@@ -6,173 +6,46 @@ import com.example.FBJV24001115synergy7firbinfudch5.view.UserView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
 import java.util.Scanner;
 import java.util.UUID;
 
-@Controller
+@RestController
+@RequestMapping("/api/users")
 public class UserController {
-    private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    private UserView userView;
     @Autowired
     private UserService userService;
-    @Autowired
-    private MerchantController merchantController;
-    @Autowired
-    private OrderController orderController;
-    @Autowired
-    private ProductController productController;
 
-    public void startApplication() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            boolean keepRunning = true;
-
-            while (keepRunning) {
-                int choice = userView.displayMainMenu(scanner);
-                switch (choice) {
-                    case 1: // Register
-                        registerUser(scanner);
-                        break;
-                    case 2: // Login
-                        if (loginUser(scanner)) {
-                            managePostLoginServices(scanner);
-                        }
-                        break;
-                    case 0: // Exit
-                        keepRunning = false;
-                        System.out.println("Exiting application.");
-                        break;
-                    default:
-                        userView.displayInvalidChoice();
-                }
-            }
-        } catch (Exception e) {
-            LOG.error(e.getMessage());
-        }
+    @PostMapping
+    public ResponseEntity<Users> registerUser(@RequestBody Users user) {
+        return ResponseEntity.ok(userService.registerUser(user));
     }
 
-    private void registerUser(Scanner scanner) {
-        System.out.print("Enter username: ");
-        String username = scanner.next();
-        System.out.print("Enter email: ");
-        String email = scanner.next();
-        System.out.print("Enter password: ");
-        String password = scanner.next();
-
-        if(password.length() < 5){
-            LOG.warn("Password is weak");
-        }
-
-        userService.registerUser(username, email, password);
-        LOG.info("User registered successfully.");
+    @PutMapping("/{id}")
+    public ResponseEntity<Users> updateUser(@PathVariable UUID id, @RequestBody Users user) {
+        user.setId(id);
+        return ResponseEntity.ok(userService.updateUser(user));
     }
 
-    private boolean loginUser(Scanner scanner) {
-        String[] credentials = userView.getLoginDetails(scanner);
-        Users user = userService.findByUsername(credentials[0]);
-        if (user != null && user.getPassword().equals(credentials[1])) {
-            userView.displayLoginSuccess();
-            return true;
-        } else {
-            userView.displayLoginFailed();
-            return false;
-        }
+    @GetMapping
+    public ResponseEntity<List<Users>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    private void managePostLoginServices(Scanner scanner) {
-        boolean keepRunning = true;
-        while (keepRunning) {
-            userView.displayWelcome();
-            int serviceChoice = scanner.nextInt();
-            switch (serviceChoice) {
-                case 1:
-                    merchantController.manageMerchantServices(scanner);
-                    break;
-                case 2:
-                    productController.manageProductServices(scanner);
-                    break;
-                case 3:
-                    manageUserServices(scanner);
-                    break;
-                case 4:
-                    orderController.manageOrderServices(scanner);
-                    break;
-                case 0:
-                    keepRunning = false;
-                    break;
-                default:
-                    userView.displayInvalidChoice();
-            }
-        }
+    @GetMapping("/{id}")
+    public ResponseEntity<Users> getUserById(@PathVariable UUID id) {
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    private void manageUserServices(Scanner scanner) {
-        boolean keepRunning = true;
-        while (keepRunning) {
-            userView.displayUserMenu();
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1: // Add User
-                    registerUser(scanner);
-                    break;
-                case 2: // Update User
-                    updateUser(scanner);
-                    break;
-                case 3: // Delete User
-                    deleteUser(scanner);
-                    break;
-                case 4:
-                    displayAllUsersByName(scanner);
-                    break;
-                case 0: // Return to Main Menu
-                    keepRunning = false;
-                    break;
-                default:
-                    userView.displayInvalidChoice();
-            }
-        }
-    }
-
-    private void updateUser(Scanner scanner) {
-        System.out.print("Enter the ID of the selected user to update: ");
-        UUID id = UUID.fromString(scanner.next());
-        System.out.print("Enter new username: ");
-        String username = scanner.next();
-        System.out.print("Enter new email: ");
-        String email = scanner.next();
-        System.out.print("Enter new password: ");
-        String password = scanner.next();
-
-        userService.updateUser(id, username, email, password);
-        System.out.println("User registered successfully.");
-    }
-
-    private void deleteUser(Scanner scanner) {
-        System.out.print("Enter user ID to delete: ");
-        UUID userId = UUID.fromString(scanner.next());
-        userService.deleteUser(userId);
-        System.out.println("User deleted successfully.");
-    }
-
-    public void displayAllUsersByName(Scanner scanner) {
-        System.out.println("Enter username to search: ");
-        String username = scanner.next();
-        System.out.println("Enter page number: ");
-        int page = scanner.nextInt();
-        System.out.println("Enter page size: ");
-        int size = scanner.nextInt();
-
-        // PageRequest is zero-based, so subtract 1 from the user's input (assuming user input is 1-based)
-        Page<Users> usersPage = userService.findAllUsersByName(username, PageRequest.of(page - 1, size));
-        if (usersPage.hasContent()) {
-            usersPage.forEach(user -> System.out.println(user.toString()));
-        } else {
-            System.out.println("No users found with the given username.");
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }

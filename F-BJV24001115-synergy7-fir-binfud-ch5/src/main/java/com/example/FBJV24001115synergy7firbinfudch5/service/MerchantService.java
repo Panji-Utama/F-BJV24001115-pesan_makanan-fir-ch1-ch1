@@ -8,7 +8,12 @@ import java.util.UUID;
 
 public interface MerchantService {
     Merchant addMerchant(Merchant merchant);
+
     Merchant updateMerchantStatus(UUID merchantId, boolean isOpen);
+
+    Merchant getMerchantById(UUID id);
+
     List<Merchant> getOpenMerchants();
-    public List<String> getProductsByMerchantName(String merchantName);
+
+    void deleteMerchant(UUID id);
 }

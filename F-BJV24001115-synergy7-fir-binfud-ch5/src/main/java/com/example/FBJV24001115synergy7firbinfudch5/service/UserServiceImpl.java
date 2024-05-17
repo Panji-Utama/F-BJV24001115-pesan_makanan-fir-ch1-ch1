@@ -7,7 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -17,33 +18,31 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public void registerUser(String username, String password, String email) {
-        userRepository.registerUser(username, password, email);
+    public Users registerUser(Users user) {
+        return userRepository.save(user);
     }
 
     @Override
-    public Users findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-    @Override
-    public Users getUserById(UUID userId) {
-        Optional<Users> user = userRepository.findById(userId);
-        return user.orElse(null);
-    }
-
-    @Override
-    public void updateUser(UUID id, String new_username, String new_email, String new_password) {
-        userRepository.updateUser(id, new_username, new_email, new_password);
+    public Users updateUser(Users user) {
+        return userRepository.save(user);
     }
 
     @Override
     public void deleteUser(UUID userId) {
-        userRepository.deleteUser(userId);
+        Users user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        user.setDeletedDate(new Date());
+        userRepository.save(user);
     }
 
     @Override
-    public Page<Users> findAllUsersByName(String name, Pageable pageable) {
-        return userRepository.findByUsernameContaining(name, pageable);
+    public Users getUserById(UUID userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
+
+    @Override
+    public List<Users> getAllUsers() {
+        return userRepository.findAll();
     }
 }
