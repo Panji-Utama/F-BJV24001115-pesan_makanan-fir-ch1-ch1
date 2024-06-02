@@ -15,10 +15,10 @@ public class FBjv24001115Synergy7FirBinfudCh5Application {
 		SpringApplication.run(FBjv24001115Synergy7FirBinfudCh5Application.class, args);
 	}
 
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
+//	@Bean
+//	public ModelMapper modelMapper() {
+//		return new ModelMapper();
+//	}
 
 //	public static void main(String[] args) {
 //		UserController userController = SpringApplication.run(FBjv24001115Synergy7FirBinfudCh5Application.class, args).getBean(UserController.class);

@@ -1,17 +1,13 @@
 package com.example.FBJV24001115synergy7firbinfudch5.controller;
 
-import com.example.FBJV24001115synergy7firbinfudch5.model.entity.Merchant;
+import com.example.FBJV24001115synergy7firbinfudch5.model.dto.ProductDTO;
 import com.example.FBJV24001115synergy7firbinfudch5.model.entity.Product;
-import com.example.FBJV24001115synergy7firbinfudch5.repository.MerchantRepository;
 import com.example.FBJV24001115synergy7firbinfudch5.service.ProductService;
-import com.example.FBJV24001115synergy7firbinfudch5.view.ProductView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Scanner;
 import java.util.UUID;
 
 @RestController
@@ -22,23 +18,23 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+    public ResponseEntity<ProductDTO> addProduct(@RequestBody Product product) {
         return ResponseEntity.ok(productService.addProduct(product));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable UUID id, @RequestBody Product product) {
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable UUID id, @RequestBody Product product) {
         product.setId(id);
         return ResponseEntity.ok(productService.updateProduct(product));
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable UUID id) {
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable UUID id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 

@@ -1,12 +1,10 @@
 package com.example.FBJV24001115synergy7firbinfudch5.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class MerchantDTO {
     private String merchantName;
     private String merchantLocation;
