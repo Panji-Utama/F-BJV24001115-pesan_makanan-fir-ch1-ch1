@@ -39,9 +39,12 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/api/auth/signup").permitAll()
-                                .requestMatchers("/api/auth/signin").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("/api/auth/signup", "/login")
+                                .permitAll()
+                                .requestMatchers("/api/auth/signin")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()
                 );
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -77,13 +80,14 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*")  // Replace "*" with your client domain if needed
+                        .allowedOriginPatterns("*")  // Allow all origins
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
-
-        }
+        };
+    }
+}
 
 //    final AuthEntryPointJwt authEntryPointJwt;
 //    final UserDetailsServiceImpl userDetailService;
