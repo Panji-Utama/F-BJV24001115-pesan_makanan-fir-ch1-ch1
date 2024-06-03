@@ -19,14 +19,16 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Build with Maven
-      run: mvn clean install
+    - name: Navigate to project directory and build with Maven
+      run: |
+        cd F-BJV24001115-synergy7-fir-binfud-ch6
+        mvn clean install
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: jar-file
-        path: target/*.jar
+        path: F-BJV24001115-synergy7-fir-binfud-ch6/target/*.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,7 +56,7 @@ jobs:
         host: ${{ secrets.VPS_IP }}
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_PRIVATE_KEY }}
-        source: "target/*.jar"
+        source: "F-BJV24001115-synergy7-fir-binfud-ch6/target/*.jar"
         target: "/var/www/app.jar"
 
     - name: Restart application on VPS
