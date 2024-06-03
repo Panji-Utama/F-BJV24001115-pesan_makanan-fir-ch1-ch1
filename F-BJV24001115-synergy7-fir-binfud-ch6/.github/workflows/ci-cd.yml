@@ -53,7 +53,7 @@ jobs:
       with:
         host: ${{ secrets.VPS_IP }}
         username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_PRIVATE_KEY }}
+        password: ${{ secrets.VPS_PASSWORD }}
         source: "target/*.jar"
         target: "/var/www/app.jar"
 
@@ -62,7 +62,7 @@ jobs:
       with:
         host: ${{ secrets.VPS_IP }}
         username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_PRIVATE_KEY }}
+        password: ${{ secrets.VPS_PASSWORD }}
         script: |
           sudo systemctl stop binarfud.service
           sudo systemctl start binarfud.service
