@@ -45,6 +45,7 @@ public class SecurityConfig {
 //                                .permitAll()
 //                                .anyRequest()
 //                                .authenticated()
+                        //
                 );
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
