@@ -48,7 +48,6 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: jar-file
-        path: target/
 
     - name: Copy JAR to remote server
       uses: appleboy/scp-action@master
@@ -56,7 +55,7 @@ jobs:
         host: ${{ secrets.VPS_IP }}
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_PRIVATE_KEY }}
-        source: "F-BJV24001115-synergy7-fir-binfud-ch6/target/*.jar"
+        source: "jar-file/*.jar"
         target: "/var/www/app.jar"
 
     - name: Restart application on VPS
