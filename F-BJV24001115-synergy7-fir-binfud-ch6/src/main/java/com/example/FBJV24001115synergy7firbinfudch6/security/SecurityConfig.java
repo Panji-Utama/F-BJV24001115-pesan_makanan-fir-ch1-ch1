@@ -38,13 +38,13 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth
-                                .requestMatchers("/api/auth/signup", "/login")
-                                .permitAll()
-                                .requestMatchers("/api/auth/signin")
-                                .permitAll()
-                                .anyRequest()
-                                .authenticated()
+                        auth.requestMatchers("/**").permitAll()
+//                                .requestMatchers("/api/auth/signup", "/login")
+//                                .permitAll()
+//                                .requestMatchers("/api/auth/signin")
+//                                .permitAll()
+//                                .anyRequest()
+//                                .authenticated()
                 );
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
