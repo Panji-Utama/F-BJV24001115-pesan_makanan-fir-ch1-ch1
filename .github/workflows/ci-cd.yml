@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -54,7 +54,7 @@ jobs:
       with:
         host: ${{ secrets.VPS_IP }}
         username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_PRIVATE_KEY }}
+        password: ${{ secrets.VPS_PASSWORD }}
         source: "jar-file/*.jar"
         target: "/var/www/app.jar"
 
@@ -63,7 +63,7 @@ jobs:
       with:
         host: ${{ secrets.VPS_IP }}
         username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_PRIVATE_KEY }}
+        password: ${{ secrets.VPS_PASSWORD }}
         script: |
           sudo systemctl stop binarfud.service
           sudo systemctl start binarfud.service
