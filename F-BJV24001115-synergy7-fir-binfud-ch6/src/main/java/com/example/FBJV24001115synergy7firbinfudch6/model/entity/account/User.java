@@ -1,14 +1,14 @@
-package com.example.FBJV24001115synergy7firbinfudch6.model.accounts;
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.example.FBJV24001115synergy7firbinfudch6.model.entity.BaseModel;
 import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Orders;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
-import org.hibernate.annotations.Where;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -22,18 +22,26 @@ import java.util.UUID;
 @Table(name = "users")
 @SQLDelete(sql = "UPDATE users SET deleted = true WHERE id = ?")
 @SQLRestriction("deleted = false")
-public class Users extends BaseModel {
+public class User extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String username;
-    private String emailAddress;
+    private String email;
     private String password;
 
+    public User(String username, String emailAddress, String password) {
+        this.username = username;
+        this.email = emailAddress;
+        this.password = password;
+    }
+
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = Orders.class)
     @JsonIgnore

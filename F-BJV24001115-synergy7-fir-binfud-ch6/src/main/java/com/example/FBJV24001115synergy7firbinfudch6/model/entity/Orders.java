@@ -1,6 +1,6 @@
 package com.example.FBJV24001115synergy7firbinfudch6.model.entity;
 
-import com.example.FBJV24001115synergy7firbinfudch6.model.accounts.Users;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -29,9 +29,9 @@ public class Orders extends BaseModel {
     private String destinationAddress;
     private Boolean completed;
 
-    @ManyToOne(targetEntity = Users.class)
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
-    private Users user;
+    private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = OrderDetail.class)
     private List<OrderDetail> orderDetails = new ArrayList<>();

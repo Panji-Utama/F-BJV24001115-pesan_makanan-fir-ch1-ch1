@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/merchants")
@@ -14,9 +16,6 @@ public class MerchantController {
 
     @Autowired
     private MerchantService merchantService;
-
-//    @Autowired
-//    UserDetailsServiceImpl userDetailService;
 
     @PostMapping
     public ResponseEntity<Merchant> addMerchant(@RequestBody Merchant merchant) {
