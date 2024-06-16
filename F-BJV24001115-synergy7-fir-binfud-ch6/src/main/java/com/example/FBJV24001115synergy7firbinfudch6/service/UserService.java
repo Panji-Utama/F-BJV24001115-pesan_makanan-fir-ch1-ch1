@@ -1,21 +1,23 @@
 package com.example.FBJV24001115synergy7firbinfudch6.service;
 
-import com.example.FBJV24001115synergy7firbinfudch6.model.accounts.Users;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
-    Users getUserById(UUID userId);
+    User getUserById(UUID userId);
 
     void deleteUser(UUID userId);
 
+    void createUserPostLogin(String email, String username);
+
     void softDeleteUser(UUID userId);
 
-    Users registerUser(Users user);
+    User registerUser(User user);
 
-    Users updateUser(Users user);
+    User updateUser(User user);
 
-    List<Users> getAllUsers();
+    List<User> getAllUsers();
 }
 

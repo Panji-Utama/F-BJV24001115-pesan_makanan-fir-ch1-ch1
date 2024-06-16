@@ -1,9 +1,10 @@
 package com.example.FBJV24001115synergy7firbinfudch6.controller;
 
-import com.example.FBJV24001115synergy7firbinfudch6.model.accounts.Users;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
 import com.example.FBJV24001115synergy7firbinfudch6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,23 +18,24 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<Users> registerUser(@RequestBody Users user) {
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.registerUser(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Users> updateUser(@PathVariable UUID id, @RequestBody Users user) {
+    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User user) {
         user.setId(id);
         return ResponseEntity.ok(userService.updateUser(user));
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
-    public ResponseEntity<List<Users>> getAllUsers() {
+    public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<Users> getUserById(@PathVariable UUID id) {
+    public ResponseEntity<User> getUserById(@PathVariable UUID id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 

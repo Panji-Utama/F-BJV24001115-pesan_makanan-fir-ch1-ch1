@@ -1,0 +1,4 @@
+Domain yang saya gunakan untuk hosting Challenge 6 adalah "binarfud.firmanpu.tech".
+
+Saya ada sedikit masalah dengan Swagger terkait menggunakannya tanpa login, jadi disini saya include Postman collection untuk mencoba API.
+Tinggal import lalu menambahkan variable "url" dengan value "https://binarfud.firmanpu.tech" di environment Postman nya mas.

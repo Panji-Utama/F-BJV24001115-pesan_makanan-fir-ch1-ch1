@@ -61,7 +61,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"open\": true\r\n}",
+							"raw": "{\r\n    \"open\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,6 +116,25 @@
 								"api",
 								"merchants",
 								"d8bf80b4-0f08-4e32-82f5-3fa0031756c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Merchant Revenue",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/reporting/merchant-revenue",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reporting",
+								"merchant-revenue"
 							]
 						}
 					},
@@ -276,7 +295,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"User Postman 1\",\r\n    \"emailAddress\": \"postman1@yahoo.com\",\r\n    \"password\": \"postman1@\"\r\n}\r\n",
+							"raw": "{\r\n    \"username\": \"User Postman 1\",\r\n    \"emailAddress\": \"postman1@google.com\",\r\n    \"password\": \"postman1@\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -346,7 +365,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"orderTime\": \"2023-05-17T00:00:00.000+00:00\",\r\n    \"destinationAddress\": \"Destination Address\",\r\n    \"completed\": false,\r\n    \"user\": {\r\n        \"id\": \"user-uuid\"\r\n    },\r\n    \"orderDetails\": [\r\n        {\r\n            \"quantity\": 2,\r\n            \"product\": {\r\n                \"id\": \"product-uuid\"\r\n            }\r\n        }\r\n    ]\r\n}\r\n",
+							"raw": "{\r\n    \"destinationAddress\": \"Destination Postman 1\",\r\n    \"completed\": false,\r\n    \"user\": {\r\n        \"id\": \"c498dd02-fce9-4d62-9670-a86bb33cc0a4\"\r\n    },\r\n    \"orderDetails\": [\r\n        {\r\n            \"quantity\": 2,\r\n            \"product\": {\r\n                \"id\": \"5a0ab86f-c636-48ab-9963-1476da9e3352\"\r\n            }\r\n        }\r\n    ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -388,11 +407,213 @@
 					"name": "Get Order by ID",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"testuser2\",\r\n  \"password\": \"testpassword2\",\r\n  \"email\":\"testuser2@gmail.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "binarfud.firmanpu.tech/api/auth/signup",
+							"host": [
+								"binarfud",
+								"firmanpu",
+								"tech"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"allrole\",\r\n  \"password\": \"allrole123\"\r\n    // \"username\": \"merchant1\",\r\n    // \"password\": \"merchant123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Login Binarfud Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"allrole\",\r\n  \"password\": \"allrole123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OTP",
+			"item": [
+				{
+					"name": "RegisterOTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"fpu1357\",\r\n  \"email\": \"fpu1357@gmail.com\",\r\n  \"password\": \"fpu1357\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:6060/api/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "6060",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VerifyOTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\":\"962898\",\r\n    \"username\": \"boganol247\",\r\n    \"email\": \"boganol247@noefa.com\",\r\n    \"password\": \"boganol247\",\r\n    \"role\": [\"user\",\"merchant\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/signup/verify",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Try Domain",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
