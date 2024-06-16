@@ -1,0 +1,35 @@
+package com.binarfud.FBJV24001115synergy7firbinfudch7.controller;
+
+import com.binarfud.FBJV24001115synergy7firbinfudch7.model.entity.Orders;
+import com.binarfud.FBJV24001115synergy7firbinfudch7.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/orders")
+public class OrderController {
+
+    @Autowired
+    private OrderService orderService;
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @PostMapping
+    public ResponseEntity<Orders> createOrder(@RequestBody Orders order) {
+        Orders createdOrder = orderService.createOrder(order);
+        return ResponseEntity.ok(createdOrder);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Orders>> getAllOrders() {
+        return ResponseEntity.ok(orderService.getAllOrders());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Orders> getOrderById(@PathVariable UUID id) {
+        return ResponseEntity.ok(orderService.getOrderById(id));
+    }
+}
