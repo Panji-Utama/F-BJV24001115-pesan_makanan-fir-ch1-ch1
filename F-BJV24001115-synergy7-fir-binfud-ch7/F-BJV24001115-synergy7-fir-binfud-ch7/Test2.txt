@@ -1,0 +1,211 @@
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.gitignore
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+// End of .gitignore
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\.gitignore
+# Default ignored files
+/shelf/
+/workspace.xml
+
+// End of .gitignore
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\compiler.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="F-BJV24001115-synergy7-fir-binfud-ch6" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="F-BJV24001115-synergy7-fir-binfud-ch6" options="-parameters" />
+    </option>
+  </component>
+</project>
+
+// End of compiler.xml
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\encodings.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+  </component>
+</project>
+
+// End of encodings.xml
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\jarRepositories.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+  </component>
+</project>
+
+// End of jarRepositories.xml
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\misc.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="workspaceImportForciblyTurnedOn" value="true" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK" />
+</project>
+
+// End of misc.xml
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\0\9\09d2f7fd718456535a824dbd8208a2eddc1c5fa5
+
+// End of 09d2f7fd718456535a824dbd8208a2eddc1c5fa5
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\0\c\0c0bcecc5a3eb68ee2d05141a38553b91fafc314
+
+// End of 0c0bcecc5a3eb68ee2d05141a38553b91fafc314
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\0\f\0fc35995d01915fc7dce70d3ac93759cfed37348
+
+// End of 0fc35995d01915fc7dce70d3ac93759cfed37348
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\1\0\108b2a0b4b9d9e219f7b81e9d8729b154845c68e
+
+// End of 108b2a0b4b9d9e219f7b81e9d8729b154845c68e
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\1\1\1115fdb391438d4ca41328f4e6e3a0d74758bb95
+
+// End of 1115fdb391438d4ca41328f4e6e3a0d74758bb95
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\1\2\1290e040a7ebc838f19b108d55db0d4fc934a6dc
+
+// End of 1290e040a7ebc838f19b108d55db0d4fc934a6dc
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\2\5\2569433f5555a47dd9e2111e54b7675d48ce9f24
+
+// End of 2569433f5555a47dd9e2111e54b7675d48ce9f24
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\2\5\25ddf19ed5709c7427ae416d67c796d7abaeb261
+
+// End of 25ddf19ed5709c7427ae416d67c796d7abaeb261
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+
+// End of 442292b8a7efeabbe4cc176709b833b1792140ec
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\4\a\4ac8f1b9b283962a67fad9bc96663330eb879f0f
+
+// End of 4ac8f1b9b283962a67fad9bc96663330eb879f0f
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\5\4\54ef0dd902e9e150ea33a286044498b6bf4e21e6
+
+// End of 54ef0dd902e9e150ea33a286044498b6bf4e21e6
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\5\b\5b2b0c424f5c11005cfaaa01d9d064c3cda13d26
+
+// End of 5b2b0c424f5c11005cfaaa01d9d064c3cda13d26
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\6\1\61c5e8d040a3d05d4e3ff2cac077cb9bf04af4de
+
+// End of 61c5e8d040a3d05d4e3ff2cac077cb9bf04af4de
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\6\5\658a4dad8da9f0227fe4acd1fe2163028031cc2c
+
+// End of 658a4dad8da9f0227fe4acd1fe2163028031cc2c
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\7\0\70add9957f0b3996a5dd6e777f0bc058c91cd634
+
+// End of 70add9957f0b3996a5dd6e777f0bc058c91cd634
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\7\a\7ad2cbbd9263604b33019412e489b91a6d49b47d
+
+// End of 7ad2cbbd9263604b33019412e489b91a6d49b47d
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\9\0\907a47be62b6f8fbce08a0e9f3b7e1dc9978da3c
+
+// End of 907a47be62b6f8fbce08a0e9f3b7e1dc9978da3c
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\9\9\99ced397d2687b7487674b7e812ddc00615757ea
+
+// End of 99ced397d2687b7487674b7e812ddc00615757ea
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\a\2\a2cacb112e862502cab571dc3d3a9f7b569672d0
+
+// End of a2cacb112e862502cab571dc3d3a9f7b569672d0
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\a\7\a7e63952a3b6052546c545a3476c9c709dd34a5f
+
+// End of a7e63952a3b6052546c545a3476c9c709dd34a5f
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\e\9\e9dd39e07f23a6f1b71805d2ab41b48592d89dce
+
+// End of e9dd39e07f23a6f1b71805d2ab41b48592d89dce
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\f\5\f58b76343e311d20edccc2ca781e5a79245a5c96
+
+// End of f58b76343e311d20edccc2ca781e5a79245a5c96
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\f\6\f694d43ba877925c40dc549e0a546650c9e19f8c
+
+// End of f694d43ba877925c40dc549e0a546650c9e19f8c
+
+// C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch6\.idea\sonarlint\issuestore\index.pb
