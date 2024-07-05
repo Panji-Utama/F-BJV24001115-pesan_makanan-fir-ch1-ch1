@@ -31,6 +31,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
+
     @Transactional
     @Override
     public Orders createOrder(Orders order) {
@@ -65,6 +68,8 @@ public class OrderServiceImpl implements OrderService {
 
         savedOrder = orderRepository.findById(savedOrder.getId()).orElseThrow(() -> new IllegalArgumentException("Order not found after save"));
         logger.info("Saved order with details: {}", savedOrder);
+
+        kafkaProducerService.sendMessage("orders", "New order created with ID: " + savedOrder.getId());
 
         return savedOrder;
     }

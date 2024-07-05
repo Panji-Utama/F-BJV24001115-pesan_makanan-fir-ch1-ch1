@@ -1,0 +1,69 @@
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch7\Gateway\src\main\java\com\ch7\Gateway\3vyUgMIb_20240706032250.txt
+File Name: 3vyUgMIb_20240706032250.txt
+Contents:
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch7\Gateway\src\main\java\com\ch7\Gateway\GatewayApplication.java
+File Name: GatewayApplication.java
+Contents:
+package com.ch7.Gateway;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GatewayApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(GatewayApplication.class, args);
+	}
+
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch7\Gateway\src\main\java\com\ch7\Gateway\config\GatewayConfig.java
+File Name: GatewayConfig.java
+Contents:
+package com.ch7.Gateway.config;
+
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class GatewayConfig {
+
+    @Bean
+    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
+        return builder.routes()
+                .route("orderService", r -> r.path("/api/orders/**")
+                        .uri("http://localhost:6060/"))
+                .build();
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch7\Gateway\src\main\java\com\ch7\Gateway\service\KafkaProducerService.java
+File Name: KafkaProducerService.java
+Contents:
+package com.ch7.Gateway.service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class KafkaProducerService {
+
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
+
+    public void sendMessage(String topic, Object message) {
+        kafkaTemplate.send(topic, message);
+    }
+}
+========================================
+

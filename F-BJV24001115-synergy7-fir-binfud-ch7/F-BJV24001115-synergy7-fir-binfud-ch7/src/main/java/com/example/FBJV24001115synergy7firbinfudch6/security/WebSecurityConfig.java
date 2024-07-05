@@ -54,7 +54,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/auth/signup/verify-otp", "/login", "/oauth2/**", "/api/auth/oauth2/success").permitAll()
+                        .requestMatchers("/api/auth/**", "/api/auth/signup/verify-otp", "/login", "/oauth2/**", "/api/auth/oauth2/success", "/api/kafka/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults())
