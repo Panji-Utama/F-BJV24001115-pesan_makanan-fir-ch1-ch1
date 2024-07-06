@@ -1,0 +1,7 @@
+PORTS
+- 6060 : Binarfud
+- 8080 : Gateway
+- 7070 : Socketio
+
+CATATAN
+Notifikasi didapatkan di url ws://localhost:7070/ws. Akan muncul notifikasi jika pengguna membuat sebuah order 
