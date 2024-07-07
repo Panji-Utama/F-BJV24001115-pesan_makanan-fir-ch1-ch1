@@ -386,6 +386,34 @@
 					"response": []
 				},
 				{
+					"name": "UpdateUserAddressTransactional",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"123e4567-e89b-12d3-a456-426614174000\",\r\n    \"newEmail\": \"newemail@example.com\",\r\n    \"newAddress\": \"New Address, City, Country\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/updateUserAndOrders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"updateUserAndOrders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get All Orders",
 					"request": {
 						"method": "GET",

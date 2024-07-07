@@ -1,7 +1,9 @@
 package com.example.FBJV24001115synergy7firbinfudch6.controller;
 
+import com.example.FBJV24001115synergy7firbinfudch6.model.dto.UpdateUserAndOrdersDTO;
 import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Orders;
 import com.example.FBJV24001115synergy7firbinfudch6.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,5 +33,11 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<Orders> getOrderById(@PathVariable UUID id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
+    }
+
+    @PatchMapping("/updateUserAndOrders")
+    public ResponseEntity<?> updateUserAndOrders(@Valid @RequestBody UpdateUserAndOrdersDTO request) {
+        orderService.updateUserAndOrders(request.getUserId(), request.getNewEmail(), request.getNewAddress());
+        return ResponseEntity.ok("User email and orders' addresses updated successfully.");
     }
 }

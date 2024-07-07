@@ -10,4 +10,6 @@ public interface OrderService {
 
     Orders getOrderById(UUID id);
     List<Orders> getAllOrders();
+
+    void updateUserAndOrders(UUID userId, String newEmail, String newAddress);
 }
