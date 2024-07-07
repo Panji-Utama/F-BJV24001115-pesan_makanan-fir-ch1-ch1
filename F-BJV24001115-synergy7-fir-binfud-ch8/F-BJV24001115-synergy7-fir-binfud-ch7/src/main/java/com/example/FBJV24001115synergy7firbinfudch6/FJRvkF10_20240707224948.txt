@@ -1,0 +1,2760 @@
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\FBjv24001115Synergy7FirBinfudCh6Application.java
+File Name: FBjv24001115Synergy7FirBinfudCh6Application.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+@SpringBootApplication
+@EnableJpaAuditing
+public class FBjv24001115Synergy7FirBinfudCh6Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(FBjv24001115Synergy7FirBinfudCh6Application.class, args);
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
+
+//	public static void main(String[] args) {
+//		UserController userController = SpringApplication.run(FBjv24001115Synergy7FirBinfudCh6Application.class, args).getBean(UserController.class);
+//		userController.startApplication();
+//	}
+
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\FJRvkF10_20240707224948.txt
+File Name: FJRvkF10_20240707224948.txt
+Contents:
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\RoleInitializer.java
+File Name: RoleInitializer.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.ERole;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.Role;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.RoleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class RoleInitializer implements CommandLineRunner {
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Override
+    public void run(String... args) throws Exception {
+        if (roleRepository.findByName(ERole.ROLE_USER).isEmpty()) {
+            roleRepository.save(new Role(ERole.ROLE_USER));
+        }
+
+        if (roleRepository.findByName(ERole.ROLE_ADMIN).isEmpty()) {
+            roleRepository.save(new Role(ERole.ROLE_ADMIN));
+        }
+
+        if (roleRepository.findByName(ERole.ROLE_MERCHANT).isEmpty()) {
+            roleRepository.save(new Role(ERole.ROLE_MERCHANT));
+        }
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\config\MailConfig.java
+File Name: MailConfig.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import java.util.Properties;
+
+@Configuration
+public class MailConfig {
+
+    @Value("${spring.mail.host}")
+    private String host;
+
+    @Value("${spring.mail.port}")
+    private int port;
+
+    @Value("${spring.mail.username}")
+    private String username;
+
+    @Value("${spring.mail.password}")
+    private String password;
+
+    @Value("${spring.mail.properties.mail.smtp.auth}")
+    private String mailSmtpAuth;
+
+    @Value("${spring.mail.properties.mail.smtp.starttls.enable}")
+    private String mailSmtpStartTls;
+
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost(host);
+        mailSender.setPort(port);
+
+        mailSender.setUsername(username);
+        mailSender.setPassword(password);
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", mailSmtpAuth);
+        props.put("mail.smtp.starttls.enable", mailSmtpStartTls);
+        props.put("mail.debug", "true");
+
+        return mailSender;
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\config\OpenApiConfig.java
+File Name: OpenApiConfig.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.config;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
+
+@Configuration
+public class OpenApiConfig {
+    @Value("${openapi.dev-url}")
+    private String devUrl;
+
+    @Value("${openapi.prod-url}")
+    private String prodUrl;
+
+    @Bean
+    public OpenAPI myOpenAPI() {
+        Server devServer = new Server();
+        devServer.setUrl(devUrl);
+        devServer.setDescription("Server URL in Development environment");
+
+        Server prodServer = new Server();
+        prodServer.setUrl(prodUrl);
+        prodServer.setDescription("Server URL in Production environment");
+
+        Contact contact = new Contact();
+        contact.setEmail("binarfud@gmail.com");
+        contact.setName("Panji");
+        contact.setUrl("https://firmanpu.tech");
+
+        License mitLicense = new License().name("MIT License")
+                .url("https://choosealicense.com/licenses/mit/");
+
+        Info info = new Info()
+                .title("Binar Fud Panji")
+                .version("1.0")
+                .contact(contact)
+                .description("This API exposes endpoints to manage Binarfud by Panji.")
+                .termsOfService("https://firmanpu.tech")
+                .license(mitLicense);
+
+        return new OpenAPI().info(info).servers(List.of(devServer, prodServer));
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\controller\AuthController.java
+File Name: AuthController.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.controller;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.dto.EmailDTO;
+import com.example.FBJV24001115synergy7firbinfudch6.model.dto.OtpVerificationDTO;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Otp;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.ERole;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.Role;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+import com.example.FBJV24001115synergy7firbinfudch6.model.jwt.request.LoginDTO;
+import com.example.FBJV24001115synergy7firbinfudch6.model.jwt.request.RegisterDTO;
+import com.example.FBJV24001115synergy7firbinfudch6.model.jwt.response.JwtResponse;
+import com.example.FBJV24001115synergy7firbinfudch6.model.jwt.response.MessageResponse;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.OtpRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.RoleRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.UserRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.security.jwt.JwtUtils;
+import com.example.FBJV24001115synergy7firbinfudch6.security.services.UserDetailsImpl;
+import com.example.FBJV24001115synergy7firbinfudch6.service.EmailServiceImpl;
+import com.example.FBJV24001115synergy7firbinfudch6.service.OtpServiceImpl;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    JwtUtils jwtUtils;
+
+    @Autowired
+    OtpServiceImpl otpService;
+
+    @Autowired
+    EmailServiceImpl emailService;
+
+    @Autowired
+    OtpRepository otpRepository;
+
+    @PostMapping("/signin")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new JwtResponse(jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles));
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO signUpRequest) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+        }
+
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+        String otp = otpService.generateOtp();
+        emailService.sendOtp(signUpRequest.getEmail(), otp);
+
+        otpRepository.save(new Otp(signUpRequest.getEmail(), otp));
+
+        return ResponseEntity.ok(new MessageResponse("OTP sent to email. Please verify to complete registration."));
+    }
+
+    @PostMapping("/signup/verify")
+    public ResponseEntity<?> verifyOtp(@Valid @RequestBody OtpVerificationDTO otpVerificationDTO) {
+        Otp otpEntity = otpRepository.findByEmail(otpVerificationDTO.getEmail())
+                .orElseThrow(() -> new RuntimeException("Error: OTP not found."));
+
+        if (!otpEntity.getOtp().equals(otpVerificationDTO.getOtp())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Invalid OTP."));
+        }
+
+        User user = new User(otpVerificationDTO.getUsername(), otpVerificationDTO.getEmail(), encoder.encode(otpVerificationDTO.getPassword()));
+
+        Set<Role> roles = new HashSet<>();
+        otpVerificationDTO.getRole().forEach(role -> {
+            switch (role) {
+                case "admin":
+                    Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    roles.add(adminRole);
+                    break;
+                case "merchant":
+                    Role merchantRole = roleRepository.findByName(ERole.ROLE_MERCHANT)
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    roles.add(merchantRole);
+                    break;
+                default:
+                    Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    roles.add(userRole);
+            }
+        });
+
+        user.setRoles(roles);
+        userRepository.save(user);
+
+        otpRepository.delete(otpEntity);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+
+    @PostMapping("/forget-password")
+    public ResponseEntity<?> forgetPassword(@Valid @RequestBody EmailDTO emailDTO) {
+        if (!userRepository.existsByEmail(emailDTO.getEmail())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email not found."));
+        }
+
+        String otp = otpService.generateOtp();
+        emailService.sendOtp(emailDTO.getEmail(), otp);
+
+        otpRepository.save(new Otp(emailDTO.getEmail(), otp));
+
+        return ResponseEntity.ok(new MessageResponse("OTP sent to email. Please verify to reset password."));
+    }
+
+    @PostMapping("/forget-password/verify")
+    public ResponseEntity<?> verifyOtpForPasswordReset(@Valid @RequestBody OtpVerificationDTO otpVerificationDTO) {
+        Otp otpEntity = otpRepository.findByEmail(otpVerificationDTO.getEmail())
+                .orElseThrow(() -> new RuntimeException("Error: OTP not found."));
+
+        if (!otpEntity.getOtp().equals(otpVerificationDTO.getOtp())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Invalid OTP."));
+        }
+
+        User user = userRepository.findByEmail(otpVerificationDTO.getEmail())
+                .orElseThrow(() -> new RuntimeException("Error: User not found."));
+        user.setPassword(encoder.encode(otpVerificationDTO.getPassword()));
+        userRepository.save(user);
+
+        otpRepository.delete(otpEntity);
+
+        return ResponseEntity.ok(new MessageResponse("Password reset successfully!"));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser(@RequestHeader("Authorization") String token) {
+        if (token != null && token.startsWith("Bearer ")) {
+            String jwt = token.substring(7);
+            jwtUtils.invalidateJwtToken(jwt);
+        }
+        return ResponseEntity.ok(new MessageResponse("User logged out successfully!"));
+    }
+
+    @GetMapping("/oauth2/success")
+    public ResponseEntity<String> oauth2Success() {
+        return ResponseEntity.ok("Google OAuth Login Successful!");
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\controller\HelloWorldController.java
+File Name: HelloWorldController.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloWorldController {
+    @GetMapping("/")
+    public ResponseEntity<String> helloWorld() {
+        return ResponseEntity.ok("Hello World!");
+    }
+
+    @GetMapping("/auth/oauth2/success")
+    public ResponseEntity<String> oauth2Success() {
+        return ResponseEntity.ok("Google OAuth Login Successful!");
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\controller\KafkaController.java
+File Name: KafkaController.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.controller;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.dto.KafkaMessageDTO;
+import com.example.FBJV24001115synergy7firbinfudch6.service.KafkaConsumerService;
+import com.example.FBJV24001115synergy7firbinfudch6.service.KafkaProducerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/kafka")
+public class KafkaController {
+
+    @Autowired
+    private KafkaConsumerService kafkaConsumerService;
+
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
+
+    @GetMapping("/messages")
+    public ResponseEntity<List<String>> getMessages() {
+        return ResponseEntity.ok(kafkaConsumerService.getMessages());
+    }
+
+    @PostMapping("/publish")
+    public ResponseEntity<String> publishMessage(@RequestBody KafkaMessageDTO request) {
+        kafkaProducerService.sendMessage(request.getTopic(), request.getMessage());
+        return ResponseEntity.ok("Message published to topic " + request.getTopic());
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\controller\MerchantController.java
+File Name: MerchantController.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.controller;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Merchant;
+import com.example.FBJV24001115synergy7firbinfudch6.service.MerchantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/merchants")
+public class MerchantController {
+
+    @Autowired
+    private MerchantService merchantService;
+
+    @PostMapping
+    public ResponseEntity<Merchant> addMerchant(@RequestBody Merchant merchant) {
+        return ResponseEntity.ok(merchantService.addMerchant(merchant));
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Merchant> updateMerchantStatus(@PathVariable UUID id, @RequestBody Map<String, Boolean> status) {
+        return ResponseEntity.ok(merchantService.updateMerchantStatus(id, status.get("open")));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Merchant> getMerchantById(@PathVariable UUID id) {
+        return ResponseEntity.ok(merchantService.getMerchantById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Merchant>> getOpenMerchants() {
+        return ResponseEntity.ok(merchantService.getOpenMerchants());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMerchant(@PathVariable UUID id) {
+        merchantService.deleteMerchant(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\controller\OrderController.java
+File Name: OrderController.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.controller;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Orders;
+import com.example.FBJV24001115synergy7firbinfudch6.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/orders")
+public class OrderController {
+
+    @Autowired
+    private OrderService orderService;
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @PostMapping
+    public ResponseEntity<Orders> createOrder(@RequestBody Orders order) {
+        Orders createdOrder = orderService.createOrder(order);
+        return ResponseEntity.ok(createdOrder);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Orders>> getAllOrders() {
+        return ResponseEntity.ok(orderService.getAllOrders());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Orders> getOrderById(@PathVariable UUID id) {
+        return ResponseEntity.ok(orderService.getOrderById(id));
+    }
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\controller\ProductController.java
+File Name: ProductController.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.controller;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Product;
+import com.example.FBJV24001115synergy7firbinfudch6.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/products")
+public class ProductController {
+
+    @Autowired
+    private ProductService productService;
+
+//    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MERCHANT')")
+    @PostMapping
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        return ResponseEntity.ok(productService.addProduct(product));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable UUID id, @RequestBody Product product) {
+        product.setId(id);
+        return ResponseEntity.ok(productService.updateProduct(product));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Product>> getAllProducts() {
+        return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable UUID id) {
+        return ResponseEntity.ok(productService.getProductById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable UUID id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\controller\UserController.java
+File Name: UserController.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.controller;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+import com.example.FBJV24001115synergy7firbinfudch6.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.registerUser(user));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User user) {
+        user.setId(id);
+        return ResponseEntity.ok(userService.updateUser(user));
+    }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable UUID id) {
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\dto\EmailDTO.java
+File Name: EmailDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class EmailDTO {
+    @NotBlank
+    @Email
+    private String email;
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\dto\KafkaMessageDTO.java
+File Name: KafkaMessageDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.dto;
+
+public class KafkaMessageDTO {
+    private String topic;
+    private String message;
+
+    // Getters and Setters
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\dto\MerchantDTO.java
+File Name: MerchantDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MerchantDTO {
+    private String merchantName;
+    private String merchantLocation;
+    private Boolean open;
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\dto\OrderDetailDTO.java
+File Name: OrderDetailDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.dto;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrderDetailDTO {
+    private Integer quantity;
+    private BigDecimal totalPrice;
+    private ProductDTO product;
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\dto\OrderDTO.java
+File Name: OrderDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrderDTO {
+    private String destinationAddress;
+    private Boolean completed;
+    private UserDTO user;
+    private List<OrderDetailDTO> orderDetails;
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\dto\OtpVerificationDTO.java
+File Name: OtpVerificationDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Set;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class OtpVerificationDTO {
+    @NotBlank
+    @Size(min = 3, max = 20)
+    private String username;
+
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(min = 6, max = 40)
+    private String password;
+
+    @NotBlank
+    private String otp;
+
+    private Set<String> role;
+}
+
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\dto\ProductDTO.java
+File Name: ProductDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.dto;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProductDTO {
+    private String productName;
+    private Double price;
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\dto\UserDTO.java
+File Name: UserDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDTO {
+    private String username;
+    private String emailAddress;
+    private String password;
+    private List<OrderDTO> orders;
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\BaseModel.java
+File Name: BaseModel.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@Getter
+@Setter
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public class BaseModel implements Serializable {
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date", nullable = false, updatable = false)
+    @CreatedDate
+    private Date createdDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_date", nullable = false)
+    @LastModifiedDate
+    private Date updatedDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "deleted_date")
+    private Date deletedDate;
+
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted = false;
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\Merchant.java
+File Name: Merchant.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
+import java.util.List;
+import java.util.UUID;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "merchant")
+@SQLDelete(sql = "UPDATE merchant SET deleted = true WHERE id = ?")
+@SQLRestriction("deleted_date IS NULL")
+public class Merchant extends BaseModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    private String merchantName;
+    private String merchantLocation;
+    private Boolean open;
+
+    @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL, targetEntity = Product.class)
+    @JsonIgnore
+    private List<Product> products;
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\OrderDetail.java
+File Name: OrderDetail.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "order_detail")
+@SQLDelete(sql = "UPDATE order_detail SET deleted_date = current_timestamp WHERE id = ?")
+@SQLRestriction("deleted_date IS NULL")
+public class OrderDetail extends BaseModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    private Integer quantity;
+    private BigDecimal totalPrice;
+
+    @ManyToOne(targetEntity = Orders.class)
+    @JoinColumn(name = "order_id")
+    @JsonIgnore
+    private Orders order;
+
+    @ManyToOne(targetEntity = Product.class)
+    @JoinColumn(name = "product_id")
+    private Product product;
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\Orders.java
+File Name: Orders.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "orders")
+@SQLDelete(sql = "UPDATE orders SET deleted_date = current_timestamp WHERE id = ?")
+@SQLRestriction("deleted_date IS NULL")
+public class Orders extends BaseModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    private Date orderTime;
+    private String destinationAddress;
+    private Boolean completed;
+
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = OrderDetail.class)
+    private List<OrderDetail> orderDetails = new ArrayList<>();
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\Otp.java
+File Name: Otp.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "otp")
+public class Otp {
+    @Id
+    private String email;
+    private String otp;
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\Product.java
+File Name: Product.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
+import java.util.List;
+import java.util.UUID;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "product")
+@SQLDelete(sql = "UPDATE product SET deleted_date = current_timestamp WHERE id = ?")
+@SQLRestriction("deleted_date IS NULL")
+public class Product extends BaseModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    private String productName;
+    private Double price;
+
+    @ManyToOne(targetEntity = Merchant.class)
+    @JoinColumn(name = "merchant_id")
+    private Merchant merchant;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, targetEntity = OrderDetail.class)
+    @JsonIgnore
+    private List<OrderDetail> orderDetails;
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\account\ERole.java
+File Name: ERole.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity.account;
+
+public enum ERole {
+  ROLE_USER,
+  ROLE_ADMIN,
+  ROLE_MERCHANT
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\account\Role.java
+File Name: Role.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity.account;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "roles")
+public class Role {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+
+  @Enumerated(EnumType.STRING)
+  @Column(length = 20)
+  private ERole name;
+
+  public Role() {
+
+  }
+
+  public Role(ERole name) {
+    this.name = name;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public ERole getName() {
+    return name;
+  }
+
+  public void setName(ERole name) {
+    this.name = name;
+  }
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\entity\account\User.java
+File Name: User.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.entity.account;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.BaseModel;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Orders;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "users")
+@SQLDelete(sql = "UPDATE users SET deleted = true WHERE id = ?")
+@SQLRestriction("deleted = false")
+public class User extends BaseModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    private String username;
+    private String email;
+    private String password;
+
+    public User(String username, String emailAddress, String password) {
+        this.username = username;
+        this.email = emailAddress;
+        this.password = password;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = Orders.class)
+    @JsonIgnore
+    private List<Orders> orders;
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\jwt\request\LoginDTO.java
+File Name: LoginDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.jwt.request;
+
+import jakarta.validation.constraints.NotBlank;
+
+public class LoginDTO {
+	@NotBlank
+  private String username;
+
+	@NotBlank
+	private String password;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\jwt\request\RegisterDTO.java
+File Name: RegisterDTO.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.jwt.request;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Set;
+
+@Setter
+@Getter
+public class RegisterDTO {
+  @NotBlank
+  @Size(min = 3, max = 20)
+  private String username;
+
+  @NotBlank
+  @Size(max = 50)
+  @Email
+  private String email;
+
+  @NotBlank
+  @Size(min = 6, max = 40)
+  private String password;
+
+  private Set<String> role;
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\jwt\response\JwtResponse.java
+File Name: JwtResponse.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.jwt.response;
+
+import java.util.List;
+import java.util.UUID;
+
+public class JwtResponse {
+  private String token;
+  private String type = "Bearer";
+  private UUID id;
+  private String username;
+  private String email;
+  private List<String> roles;
+
+  public JwtResponse(String accessToken, UUID id, String username, String email, List<String> roles) {
+    this.token = accessToken;
+    this.id = id;
+    this.username = username;
+    this.email = email;
+    this.roles = roles;
+  }
+
+  public String getAccessToken() {
+    return token;
+  }
+
+  public void setAccessToken(String accessToken) {
+    this.token = accessToken;
+  }
+
+  public String getTokenType() {
+    return type;
+  }
+
+  public void setTokenType(String tokenType) {
+    this.type = tokenType;
+  }
+
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public List<String> getRoles() {
+    return roles;
+  }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\model\jwt\response\MessageResponse.java
+File Name: MessageResponse.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.model.jwt.response;
+
+public class MessageResponse {
+  private String message;
+
+  public MessageResponse(String message) {
+    this.message = message;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\repository\MerchantRepository.java
+File Name: MerchantRepository.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.repository;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Merchant;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface MerchantRepository extends JpaRepository<Merchant, UUID> {
+    List<Merchant> findByOpen(boolean isOpen);
+    @Query(value = "SELECT p.product_name, p.price FROM product p INNER JOIN merchant m ON p.merchant_id = m.id WHERE m.merchant_name = :merchantName", nativeQuery = true)
+    List<Object[]> findAllProductsByMerchantName(@Param("merchantName") String merchantName);
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\repository\OrderDetailRepository.java
+File Name: OrderDetailRepository.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.repository;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.OrderDetail;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface OrderDetailRepository extends JpaRepository<OrderDetail, UUID> {
+
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\repository\OrderRepository.java
+File Name: OrderRepository.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.repository;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Orders;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface OrderRepository extends JpaRepository<Orders, UUID> {
+
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\repository\OtpRepository.java
+File Name: OtpRepository.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.repository;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Otp;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface OtpRepository extends JpaRepository<Otp, String> {
+    Optional<Otp> findByEmail(String email);
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\repository\ProductRepository.java
+File Name: ProductRepository.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.repository;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface ProductRepository extends JpaRepository<Product, UUID> {
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\repository\RoleRepository.java
+File Name: RoleRepository.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.repository;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.ERole;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface RoleRepository extends JpaRepository<Role, Long> {
+    Optional<Role> findByName(ERole name);
+}
+
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\repository\UserRepository.java
+File Name: UserRepository.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.repository;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+import java.util.UUID;
+
+public interface UserRepository extends JpaRepository<User, UUID> {
+
+    Optional<User> findByUsername(String username);
+
+    Optional<User> findByEmail(String email);
+
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String emailAddress);
+//    Page<User> findByUsernameContaining(String username, Pageable pageable);
+//
+//    @Procedure(procedureName  = "procedure_create_user")
+//    void registerUser(@Param("c_username") String username, @Param("c_email") String email, @Param("c_pw")  String password);
+//
+//    @Procedure(procedureName = "procedure_update_user")
+//    void updateUser(UUID new_id, String new_username, String new_email, String new_password);
+//
+//    @Procedure(procedureName = "procedure_delete_user")
+//    void deleteUser(UUID user_id);
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\security\CorsConfig.java
+File Name: CorsConfig.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class CorsConfig {
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("*")
+                        .allowedHeaders("*");
+            }
+        };
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\security\WebSecurityConfig.java
+File Name: WebSecurityConfig.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.security;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.ERole;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.Role;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.RoleRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.UserRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.security.jwt.AuthTokenFilter;
+import com.example.FBJV24001115synergy7firbinfudch6.security.services.UserDetailsServiceImpl;
+import com.example.FBJV24001115synergy7firbinfudch6.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Configuration
+@EnableMethodSecurity
+public class WebSecurityConfig implements WebMvcConfigurer {
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http, PasswordEncoder encoder) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/**", "/api/auth/signup/verify-otp", "/login", "/oauth2/**", "/api/auth/oauth2/success", "/api/kafka/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(Customizer.withDefaults())
+                .oauth2Login(oauth2 -> oauth2
+                        .userInfoEndpoint(userInfo -> userInfo.oidcUserService(this.oidcUserService()))
+                        .successHandler((request, response, authentication) -> {
+                            DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
+                            String email = oidcUser.getAttribute("email");
+
+                            User user = userRepository.findByEmail(email)
+                                    .orElseGet(() -> {
+                                        User newUser = new User(email, email, encoder.encode(email)); // Encode email as password
+                                        Set<Role> roles = new HashSet<>();
+                                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                        roles.add(adminRole);
+                                        newUser.setRoles(roles);
+                                        return userRepository.save(newUser);
+                                    });
+
+                            userService.createUserPostLogin(email, email);
+                            response.sendRedirect("/api/auth/oauth2/success");
+                        })
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        http.authenticationProvider(authenticationProvider(encoder));
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(PasswordEncoder encoder) {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(encoder);
+        return authProvider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+
+    @Bean
+    public OidcUserService oidcUserService() {
+        return new OidcUserService();
+    }
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer
+                .favorParameter(false)
+                .ignoreAcceptHeader(true)
+                .defaultContentType(MediaType.APPLICATION_JSON);
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\security\jwt\AuthEntryPointJwt.java
+File Name: AuthEntryPointJwt.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.security.jwt;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+@Component
+public class AuthEntryPointJwt implements AuthenticationEntryPoint {
+
+  private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
+
+  @Override
+  public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
+      throws IOException, ServletException {
+    logger.error("Unauthorized error: {}", authException.getMessage());
+
+    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+
+    final Map<String, Object> body = new HashMap<>();
+    body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+    body.put("error", "Unauthorized");
+    body.put("message", authException.getMessage());
+    body.put("path", request.getServletPath());
+
+    final ObjectMapper mapper = new ObjectMapper();
+    mapper.writeValue(response.getOutputStream(), body);
+  }
+
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\security\jwt\AuthTokenFilter.java
+File Name: AuthTokenFilter.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.security.jwt;
+
+import com.example.FBJV24001115synergy7firbinfudch6.security.services.UserDetailsServiceImpl;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.util.StringUtils;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+public class AuthTokenFilter extends OncePerRequestFilter {
+  @Autowired
+  private JwtUtils jwtUtils;
+
+  @Autowired
+  private UserDetailsServiceImpl userDetailsService;
+
+  private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
+
+  @Override
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+          throws ServletException, IOException {
+    try {
+      String jwt = parseJwt(request);
+      if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+        String username = jwtUtils.getUserNameFromJwtToken(jwt);
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+      }
+    } catch (Exception e) {
+      logger.error("Cannot set user authentication: {}", e);
+    }
+
+    filterChain.doFilter(request, response);
+  }
+
+  @Override
+  protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    String path = request.getRequestURI();
+    return path.startsWith("/api/auth/");
+  }
+
+  private String parseJwt(HttpServletRequest request) {
+    String headerAuth = request.getHeader("Authorization");
+
+    if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+      return headerAuth.substring(7);
+    }
+
+    return null;
+  }
+}
+
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\security\jwt\JwtUtils.java
+File Name: JwtUtils.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.security.jwt;
+
+import com.example.FBJV24001115synergy7firbinfudch6.security.services.UserDetailsImpl;
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
+import java.security.Key;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+@Component
+public class JwtUtils {
+  private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
+
+  private Set<String> invalidatedTokens = new HashSet<>();
+
+  @Value("${security.jwt.secret-key}")
+  private String jwtSecret;
+
+  @Value("${security.jwt.expiration-time}")
+  private int jwtExpirationMs;
+
+  public String generateToken(Authentication authentication) {
+    UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+    return Jwts.builder()
+            .setSubject(userPrincipal.getUsername())
+            .setIssuedAt(new Date())
+            .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+            .signWith(key(), SignatureAlgorithm.HS256)
+            .compact();
+  }
+
+  private Key key() {
+    return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
+  }
+
+  public String getUserNameFromJwtToken(String token) {
+    return Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(token).getBody().getSubject();
+  }
+
+  public void invalidateJwtToken(String token) {
+    invalidatedTokens.add(token);
+  }
+
+  public boolean validateJwtToken(String authToken) {
+    if (invalidatedTokens.contains(authToken)) {
+      logger.warn("JWT token is invalidated: {}", authToken);
+      return false;
+    }
+    try {
+      Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken);
+      return true;
+    } catch (MalformedJwtException e) {
+      logger.error("Invalid JWT token: {}", e.getMessage());
+    } catch (ExpiredJwtException e) {
+      logger.error("JWT token is expired: {}", e.getMessage());
+    } catch (UnsupportedJwtException e) {
+      logger.error("JWT token is unsupported: {}", e.getMessage());
+    } catch (IllegalArgumentException e) {
+      logger.error("JWT claims string is empty: {}", e.getMessage());
+    }
+    return false;
+  }
+
+  public String generateJwtToken(Authentication authentication) {
+    UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
+    return Jwts.builder()
+            .setSubject((userPrincipal.getUsername()))
+            .setIssuedAt(new Date())
+            .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+            .signWith(key(), SignatureAlgorithm.HS256)
+            .compact();
+  }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\security\services\UserDetailsImpl.java
+File Name: UserDetailsImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.security.services;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class UserDetailsImpl implements UserDetails, OidcUser {
+  private static final long serialVersionUID = 1L;
+
+  private UUID id;
+
+  private String username;
+
+  private String email;
+
+  @JsonIgnore
+  private String password;
+
+  private Collection<? extends GrantedAuthority> authorities;
+
+  private Map<String, Object> attributes;
+
+  public UserDetailsImpl(UUID id, String username, String email, String password,
+                         Collection<? extends GrantedAuthority> authorities) {
+    this.id = id;
+    this.username = username;
+    this.email = email;
+    this.password = password;
+    this.authorities = authorities;
+  }
+
+  public static UserDetailsImpl build(User user) {
+    List<GrantedAuthority> authorities = user.getRoles().stream()
+            .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+            .collect(Collectors.toList());
+
+    return new UserDetailsImpl(
+            user.getId(),
+            user.getUsername(),
+            user.getEmail(),
+            user.getPassword(),
+            authorities);
+  }
+
+  public static UserDetailsImpl build(OidcUser oidcUser) {
+    UserDetailsImpl userDetails = new UserDetailsImpl(
+            null,
+            oidcUser.getAttribute("email"),
+            oidcUser.getAttribute("email"),
+            null,
+            oidcUser.getAuthorities());
+    userDetails.setAttributes(oidcUser.getAttributes());
+    return userDetails;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
+  }
+
+  public UUID getId() {
+    return id;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  @Override
+  public String getPassword() {
+    return password;
+  }
+
+  @Override
+  public String getUsername() {
+    return username;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    UserDetailsImpl user = (UserDetailsImpl) o;
+    return Objects.equals(id, user.id);
+  }
+
+  @Override
+  public Map<String, Object> getAttributes() {
+    return attributes;
+  }
+
+  public void setAttributes(Map<String, Object> attributes) {
+    this.attributes = attributes;
+  }
+
+  @Override
+  public String getName() {
+    return username;
+  }
+
+  @Override
+  public Map<String, Object> getClaims() {
+    return null;
+  }
+
+  @Override
+  public OidcUserInfo getUserInfo() {
+    return null;
+  }
+
+  @Override
+  public OidcIdToken getIdToken() {
+    return null;
+  }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\security\services\UserDetailsServiceImpl.java
+File Name: UserDetailsServiceImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.security.services;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+  @Autowired
+  UserRepository userRepository;
+
+  @Override
+  @Transactional
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    User user = userRepository.findByUsername(username)
+        .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+
+    return UserDetailsImpl.build(user);
+  }
+
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\EmailServiceImpl.java
+File Name: EmailServiceImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailServiceImpl {
+    @Autowired
+    private JavaMailSender mailSender;
+
+    public void sendOtp(String to, String otp) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("Binarfud OTP - Panji");
+        message.setText("Your OTP code is: " + otp);
+        mailSender.send(message);
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\KafkaConsumerService.java
+File Name: KafkaConsumerService.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class KafkaConsumerService {
+
+    private final List<String> messages = new ArrayList<>();
+
+    @KafkaListener(topics = "your_topic_name", groupId = "your_group_id")
+    public void listen(ConsumerRecord<String, String> record) {
+        messages.add(record.value());
+    }
+
+    public List<String> getMessages() {
+        return messages;
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\KafkaProducerService.java
+File Name: KafkaProducerService.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class KafkaProducerService {
+
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    public void sendMessage(String topic, String message) {
+        kafkaTemplate.send(topic, message);
+    }
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\MerchantService.java
+File Name: MerchantService.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Merchant;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface MerchantService {
+    Merchant addMerchant(Merchant merchant);
+
+    Merchant updateMerchantStatus(UUID merchantId, boolean isOpen);
+
+    Merchant getMerchantById(UUID id);
+
+    List<Merchant> getOpenMerchants();
+
+    void deleteMerchant(UUID id);
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\MerchantServiceImpl.java
+File Name: MerchantServiceImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Merchant;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.MerchantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class MerchantServiceImpl implements MerchantService {
+    @Autowired
+    private MerchantRepository merchantRepository;
+
+    @Override
+    public Merchant addMerchant(Merchant merchant) {
+        return merchantRepository.save(merchant);
+    }
+
+    @Override
+    public Merchant updateMerchantStatus(UUID merchantId, boolean isOpen) {
+        Merchant merchant = merchantRepository.findById(merchantId)
+                .orElseThrow(() -> new IllegalArgumentException("Merchant not found"));
+        merchant.setOpen(isOpen);
+        return merchantRepository.save(merchant);
+    }
+
+    @Override
+    public Merchant getMerchantById(UUID id) {
+        return merchantRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Merchant not found"));
+    }
+
+    @Override
+    public List<Merchant> getOpenMerchants() {
+        return merchantRepository.findByOpen(true);
+    }
+
+    @Override
+    public void deleteMerchant(UUID id) {
+        Merchant merchant = merchantRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Merchant not found"));
+        merchant.setDeletedDate(new Date());
+        merchantRepository.save(merchant);
+    }
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\OrderDetailService.java
+File Name: OrderDetailService.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.OrderDetail;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface OrderDetailService {
+    OrderDetail addOrderDetail(OrderDetail orderDetail);
+    void deleteOrderDetail(UUID id);
+    OrderDetail updateOrderDetail(OrderDetail orderDetail);
+    List<OrderDetail> getAllOrderDetails();
+    OrderDetail getOrderDetailById(UUID id);
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\OrderDetailServiceImpl.java
+File Name: OrderDetailServiceImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.OrderDetail;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.OrderDetailRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class OrderDetailServiceImpl implements OrderDetailService {
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
+    @Override
+    public OrderDetail addOrderDetail(OrderDetail orderDetail) {
+        return orderDetailRepository.save(orderDetail);
+    }
+
+    @Override
+    public void deleteOrderDetail(UUID id) {
+        orderDetailRepository.deleteById(id);
+    }
+
+    @Override
+    public OrderDetail updateOrderDetail(OrderDetail orderDetail) {
+        return orderDetailRepository.save(orderDetail);
+    }
+
+    @Override
+    public List<OrderDetail> getAllOrderDetails() {
+        return orderDetailRepository.findAll();
+    }
+
+    @Override
+    public OrderDetail getOrderDetailById(UUID id) {
+        return orderDetailRepository.findById(id).orElse(null);
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\OrderService.java
+File Name: OrderService.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Orders;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface OrderService {
+    Orders createOrder(Orders order);
+
+    Orders getOrderById(UUID id);
+    List<Orders> getAllOrders();
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\OrderServiceImpl.java
+File Name: OrderServiceImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.OrderDetail;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Orders;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Product;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.OrderDetailRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.OrderRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.ProductRepository;
+import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+    private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
+
+    @Transactional
+    @Override
+    public Orders createOrder(Orders order) {
+        logger.info("Creating order: {}", order);
+        order.setOrderTime(new Date());
+
+        if (order.getOrderDetails() == null) {
+            order.setOrderDetails(new ArrayList<>());
+        }
+
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        for (OrderDetail detail : order.getOrderDetails()) {
+            logger.info("Processing OrderDetail: {}", detail);
+            Product product = productRepository.findById(detail.getProduct().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+
+            detail.setOrder(order);
+            detail.setTotalPrice(BigDecimal.valueOf(detail.getQuantity()).multiply(BigDecimal.valueOf(product.getPrice())));
+            logger.info("OrderDetail after setting order and total price: {}", detail);
+            orderDetails.add(detail);
+        }
+
+        order.setOrderDetails(orderDetails);
+        Orders savedOrder = orderRepository.save(order);
+        logger.info("Saved order: {}", savedOrder);
+
+        for (OrderDetail detail : orderDetails) {
+            logger.info("Saving OrderDetail: {}", detail);
+            orderDetailRepository.save(detail);
+            logger.info("Saved OrderDetail: {}", detail);
+        }
+
+        savedOrder = orderRepository.findById(savedOrder.getId()).orElseThrow(() -> new IllegalArgumentException("Order not found after save"));
+        logger.info("Saved order with details: {}", savedOrder);
+
+        kafkaProducerService.sendMessage("orders", "New order created with ID: " + savedOrder.getId());
+
+        return savedOrder;
+    }
+
+    @Override
+    public List<Orders> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public Orders getOrderById(UUID id) {
+        return orderRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found"));
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\OtpServiceImpl.java
+File Name: OtpServiceImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import org.springframework.stereotype.Service;
+
+import java.security.SecureRandom;
+
+@Service
+public class OtpServiceImpl {
+    private final SecureRandom random = new SecureRandom();
+
+    public String generateOtp() {
+        int otp = 100000 + random.nextInt(900000);
+        return String.valueOf(otp);
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\ProductService.java
+File Name: ProductService.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Product;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface ProductService {
+    Product addProduct(Product product);
+
+    Product updateProduct(Product product);
+
+    void deleteProduct(UUID productId);
+
+    Product getProductById(UUID productId);
+
+    List<Product> getAllProducts();
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\ProductServiceImpl.java
+File Name: ProductServiceImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Merchant;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Product;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.MerchantRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class ProductServiceImpl implements ProductService {
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private MerchantRepository merchantRepository;
+
+//    @Override
+//    public Product addProduct(Product product) {
+//        return productRepository.save(product);
+//    }
+
+    @Override
+    public Product addProduct(Product product) {
+        UUID merchantId = product.getMerchant().getId();
+        Merchant merchant = merchantRepository.findById(merchantId)
+                .orElseThrow(() -> new IllegalArgumentException("Merchant not found"));
+        product.setMerchant(merchant);
+
+        if (product.getPrice() == null) {
+            throw new IllegalArgumentException("Product price cannot be null");
+        }
+
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Product updateProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    public void deleteProduct(UUID productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+        product.setDeletedDate(new Date());
+        productRepository.save(product);
+    }
+
+    @Override
+    public Product getProductById(UUID productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\UserService.java
+File Name: UserService.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface UserService {
+    User getUserById(UUID userId);
+
+    void deleteUser(UUID userId);
+
+    void createUserPostLogin(String email, String username);
+
+    void softDeleteUser(UUID userId);
+
+    User registerUser(User user);
+
+    User updateUser(User user);
+
+    List<User> getAllUsers();
+}
+
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\service\UserServiceImpl.java
+File Name: UserServiceImpl.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.service;
+
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+
+//    @Override
+//    public User registerUser(User user) {
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//
+//        Set<Role> roles = new HashSet<>();
+//        Role userRole = roleRepository.findByName(Role.ERole.ROLE_USER)
+//                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+//        roles.add(userRole);
+//
+//        user.setRoles(roles);
+//
+//        return userRepository.save(user);
+//    }
+
+    @Override
+    public User registerUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(UUID userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        user.setDeleted(true);
+        user.setDeletedDate(new Date());
+        userRepository.save(user);
+    }
+
+    @Override
+    public void softDeleteUser(UUID userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + userId));
+        user.setDeleted(true);
+        user.setDeletedDate(new Date());
+        userRepository.save(user);
+    }
+
+
+    @Override
+    public User getUserById(UUID userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
+
+    public void createUserPostLogin(String email, String username) {
+        if (!userRepository.existsByEmail(email)) {
+            User user = new User();
+            user.setEmail(email);
+            user.setUsername(username);
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+}
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\view\MerchantView.java
+File Name: MerchantView.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.view;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class MerchantView {
+
+    public void displayMerchantMenu() {
+        System.out.println("Merchant Services:");
+        System.out.println("1. Add Merchant");
+        System.out.println("2. Edit Merchant Status");
+        System.out.println("3. Show Open Merchants");
+        System.out.println("4. Show Products of Merchant by Merchant Name");
+        System.out.println("0. Return to Main Menu");
+        System.out.println("\nYour choice: ");
+    }
+
+//    public void displayProducts(List<Product> products) {
+//        if (products.isEmpty()) {
+//            System.out.println("No products found for this merchant.");
+//        } else {
+//            products.forEach(product -> System.out.println(product.getProductName() + " - " + product.getPrice()));
+//        }
+//    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\view\OrderView.java
+File Name: OrderView.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.view;
+
+import org.springframework.stereotype.Component;
+
+import java.util.Scanner;
+
+@Component
+public class OrderView {
+
+    public void displayOrderMenu() {
+        System.out.println("Order Services:");
+        System.out.println("1. Create Order");
+        System.out.println("2. Display Orders");
+        System.out.println("0. Return to Main Menu");
+        System.out.println("\nYour choice: ");
+    }
+
+    public int getOrderChoice(Scanner scanner) {
+        return scanner.nextInt();
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\view\ProductView.java
+File Name: ProductView.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.view;
+
+import org.springframework.stereotype.Component;
+
+import java.util.Scanner;
+
+@Component
+public class ProductView {
+
+    public void displayProductMenu() {
+        System.out.println("Product Services:");
+        System.out.println("1. Add Product");
+        System.out.println("2. Update Product");
+        System.out.println("3. Delete Product");
+        System.out.println("4. Show Available Products");
+        System.out.println("0. Return to Main Menu");
+        System.out.println("\nYour choice: ");
+    }
+
+    public int getProductChoice(Scanner scanner) {
+        return scanner.nextInt();
+    }
+}
+
+========================================
+
+File Path: C:\Users\Panji\Documents\Backend Java SYNRGY Academy\SYNRGY7_BEJ_FirmanPanjiUtama\F-BJV24001115-synergy7-fir-binfud-ch8\F-BJV24001115-synergy7-fir-binfud-ch7\src\main\java\com\example\FBJV24001115synergy7firbinfudch6\view\UserView.java
+File Name: UserView.java
+Contents:
+package com.example.FBJV24001115synergy7firbinfudch6.view;
+
+import org.springframework.stereotype.Component;
+
+import java.util.Scanner;
+
+@Component
+public class UserView {
+
+    public int displayMainMenu(Scanner scanner) {
+        System.out.println("\nWelcome to our application");
+        System.out.println("1. Register");
+        System.out.println("2. Login");
+        System.out.println("0. Exit");
+        System.out.print("Enter your choice: ");
+        return scanner.nextInt();
+    }
+
+    public String[] getRegistrationDetails(Scanner scanner) {
+        scanner.nextLine();
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+        System.out.print("Enter email address: ");
+        String email = scanner.nextLine();
+        return new String[]{username, password, email};
+    }
+
+    public String[] getLoginDetails(Scanner scanner) {
+        scanner.nextLine();
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+        return new String[]{username, password};
+    }
+
+    public void displayLoginSuccess() {
+        System.out.println("Login successful.");
+    }
+
+    public void displayLoginFailed() {
+        System.out.println("Login failed.");
+    }
+
+    public void displayInvalidChoice() {
+        System.out.println("Invalid choice. Please try again.");
+    }
+
+    public void displayWelcome() {
+        System.out.println("""
+                ================================================
+                Selamat datang di Binarfud - Panji
+                ================================================
+                Silahkan pilih service berdasarkan model:
+                
+                1. Merchant
+                2. Products
+                3. Users
+                4. Order
+                
+                Pilihan anda:
+                """);
+    }
+
+    public void displayUserMenu() {
+        System.out.println("User Services:");
+        System.out.println("1. Create User");
+        System.out.println("2. Update User");
+        System.out.println("3. Delete User");
+        System.out.println("4. Search Username");
+        System.out.println("0. Return to Main Menu");
+        System.out.println("\nYour choice: ");
+    }
+}
+
+========================================
+
