@@ -3,9 +3,11 @@ package com.example.FBJV24001115synergy7firbinfudch6.service;
 import com.example.FBJV24001115synergy7firbinfudch6.model.entity.OrderDetail;
 import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Orders;
 import com.example.FBJV24001115synergy7firbinfudch6.model.entity.Product;
+import com.example.FBJV24001115synergy7firbinfudch6.model.entity.account.User;
 import com.example.FBJV24001115synergy7firbinfudch6.repository.OrderDetailRepository;
 import com.example.FBJV24001115synergy7firbinfudch6.repository.OrderRepository;
 import com.example.FBJV24001115synergy7firbinfudch6.repository.ProductRepository;
+import com.example.FBJV24001115synergy7firbinfudch6.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private OrderDetailRepository orderDetailRepository;
@@ -77,6 +82,23 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Orders> getAllOrders() {
         return orderRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void updateUserAndOrders(UUID userId, String newEmail, String newAddress) {
+        // Update user email
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        user.setEmail(newEmail);
+        userRepository.save(user);
+
+        // Update orders' destination address
+        List<Orders> orders = orderRepository.findByUserId(userId);
+        for (Orders order : orders) {
+            order.setDestinationAddress(newAddress);
+            orderRepository.save(order);
+        }
     }
 
     @Override
